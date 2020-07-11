@@ -25,7 +25,7 @@ export async function getServerSideProps({ req, res }) {
 
   if (!session || !session.user) {
     res.writeHead(302, {
-      Location: '/api/login',
+      Location: '/api/auth/login',
     })
     res.end()
     return
