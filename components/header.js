@@ -10,28 +10,11 @@ function Header({ user, loading }) {
               <a>Home</a>
             </Link>
           </li>
-          <li>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </li>
           {!loading &&
             (user ? (
-              <>
-                <li>
-                  <Link href="/profile">
-                    <a>Client-rendered profile</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/advanced/ssr-profile">
-                    <a>Server rendered profile (advanced)</a>
-                  </Link>
-                </li>
-                <li>
-                  <a href="/api/auth/logout">Logout</a>
-                </li>
-              </>
+              <li>
+                <a href="/api/auth/logout">Logout</a>
+              </li>
             ) : (
               <li>
                 <a href="/api/auth/login">Login</a>
@@ -47,7 +30,7 @@ function Header({ user, loading }) {
           background-color: #333;
         }
         nav {
-          max-width: 42rem;
+          padding: 0 1em;
           margin: 1.5rem auto;
         }
         ul {
@@ -59,7 +42,7 @@ function Header({ user, loading }) {
         li {
           margin-right: 1rem;
         }
-        li:nth-child(2) {
+        li:nth-child(1) {
           margin-right: auto;
         }
         a {

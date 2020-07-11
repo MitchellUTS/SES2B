@@ -25,9 +25,11 @@ function Home() {
       {user && (
         <>
           <h4>Rendered user info on the client</h4>
+          {/* <a href="/api/users">Click me</a> */}
           <img src={user.picture} alt="user picture" />
           <p>nickname: {user.nickname}</p>
           <p>name: {user.name}</p>
+          <p>{JSON.stringify(user)}</p>
         </>
       )}
     </Layout>
