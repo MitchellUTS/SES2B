@@ -5,11 +5,12 @@
 }
 
 .menu {
-    position: fixed;
+    position: absolute;
     /* width: 100px;
     height: 200px; */
     background: hotpink;
     padding: 0.7em;
+    right: 16px;
 }
 
 .menu ul {
