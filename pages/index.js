@@ -11,24 +11,14 @@ function Home() {
       {loading && <p>Loading login info...</p>}
 
       {!loading && !user && (
-        <>
-          <p>
-            To test the login click in <i>Login</i>
-          </p>
-          <p>
-            Once you have logged in you should be able to click in{' '}
-            <i>Profile</i> and <i>Logout</i>
-          </p>
-        </>
+        <p>
+          <a href="/api/auth/login">Login</a> to get started
+        </p>
       )}
 
       {user && (
         <>
-          <h4>Rendered user info on the client</h4>
-          {/* <a href="/api/users">Click me</a> */}
-          <img src={user.picture} alt="user picture" />
-          <p>nickname: {user.nickname}</p>
-          <p>name: {user.name}</p>
+          <a href="/api/users">Click me</a>
           <p>{JSON.stringify(user)}</p>
         </>
       )}

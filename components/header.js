@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Profile from './profile';
 
 function Header({ user, loading }) {
   return (
@@ -10,16 +11,24 @@ function Header({ user, loading }) {
               <a>Home</a>
             </Link>
           </li>
-          {!loading &&
+          <Profile/>
+          {/* {!loading &&
             (user ? (
-              <li>
-                <a href="/api/auth/logout">Logout</a>
-              </li>
+              <>
+                <li>
+                  <Link href="/profile">
+                    <a>Profile</a>
+                  </Link>
+                </li>
+                <li>
+                  <a href="/api/auth/logout">Logout</a>
+                </li>
+              </>
             ) : (
               <li>
                 <a href="/api/auth/login">Login</a>
               </li>
-            ))}
+            ))} */}
         </ul>
       </nav>
 

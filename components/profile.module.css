@@ -1,0 +1,19 @@
+.profile img {
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+}
+
+.menu {
+    position: fixed;
+    /* width: 100px;
+    height: 200px; */
+    background: hotpink;
+    padding: 0.7em;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
