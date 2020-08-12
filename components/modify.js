@@ -15,21 +15,6 @@ class Modify extends Component {
     this.handleChange = this.handleChange.bind(this);
     // this.onHandleUpdate = this.onHandleUpdate.bind(this);
 
-    fetchUser().then(this.setUser.bind(this)).catch(console.error);
-  }
-
-  setUser(user) {
-    this.setState({
-      user: user,
-      loading: false,
-    });
-  }
-
-  handleClick(event) {
-    this.setState({
-      isOpen: (!this.state.isOpen)
-    });
-    // this.updateUser();
   }
 
   handleChange(e, field) {
@@ -38,57 +23,33 @@ class Modify extends Component {
     });
   }
 
-  getUserPicture() {
-    if (this.state.user)
-      return this.state.user.picture;
-    return "https://www.avioncommunications.com.au/wp-content/uploads/2014/06/Question-mark.png";
-  }
-
-  updateUser() {
-    let {user, loading} = useFetchUser();
-    this.setState({
-      user: user,
-      loading: loading,
-    });
-  }
+  // onHandleUpdate(e){
+  //   console.log(this.postId);
+  //   e.preventDefault();
+  //   database.ref('posts').child('${this.postId}').update({
+  //     question: this.state.question,
+  //     answer: this.state.answer
+  //   });
+  //   this.setState({
+  //     question: '',
+  //     answer: ''
+  //   });
+  // }
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className={styles.profile}>
-        {/* <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} /> */}
-          {this.state.isOpen && (
-            <div className={styles.menu}>
-              <ul>
-                {!this.state.loading &&
-                  (this.state.user ? (
-                    <>
-                      <li>
-                        <Link href="/profile">
-                          <a>Modify</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <a href="/api/auth/logout">Logout</a>
-                      </li>
-                    </>
-                  ) : (
-                    <li>
-                      <a href="/api/auth/login">Login</a>
-                    </li>
-                  )
-                  )}
-              {this.state.loading && (
-                <li>
-                  Loading
-                </li>
-              )}
-              </ul>
-            </div>
-          )}
-        <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
-        <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
-        <button className="btn btn-success">Submit</button>
+        <form onSubmit={this.onHandleUpdate}>
+          <div className="form-group">
+            <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
+          </div>
+            <br/>
+          <div className="form-group">
+          <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
+          </div>
+          <button className="btn btn-success">Submit</button>
+        </form>
       </div>
     );
   };
