@@ -9,10 +9,11 @@ const defaultMeta = {
 };
 
 function validateMeta(meta) {
-  meta.title       = (meta.title       || defaultMeta.title) + " | " +  siteName;
-  meta.description = (meta.description || defaultMeta.description);
-  meta.image       = (meta.image       || defaultMeta.image);
-  return meta;
+  return {
+    title:       (meta.title       || defaultMeta.title) + " | " +  siteName,
+    description: (meta.description || defaultMeta.description),
+    image:       (meta.image       || defaultMeta.image),
+  };
 }
 
 function Layout({ user, loading = false, meta = {}, children }) {
