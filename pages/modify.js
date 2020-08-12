@@ -7,14 +7,14 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading}>
-      <Modify user={user} loading={loading} />
       <h1>Modify Form</h1>
+      <Modify user={user} loading={loading} />
 
       {loading && <p>Loading login info...</p>}
 
       {!loading && !user && (
         <p>
-            <a href="/api/auth/login">Login</a> to see your profile
+            {/* <a href="/api/auth/login">Login</a> to see your profile */}
         </p>
       )}
 

@@ -56,7 +56,7 @@ class Modify extends Component {
     // console.log(this.state);
     return (
       <div className={styles.profile}>
-        <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} />
+        {/* <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} /> */}
           {this.state.isOpen && (
             <div className={styles.menu}>
               <ul>
