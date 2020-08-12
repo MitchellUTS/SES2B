@@ -7,11 +7,13 @@ class Modify extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      loading: true,
-      isOpen: false,
+      question: '',
+      answer: '',
+      post: {},
     }
-    this.handleClick = this.handleClick.bind(this);
+
+    this.handleChange = this.handleChange.bind(this);
+    // this.onHandleUpdate = this.onHandleUpdate.bind(this);
 
     fetchUser().then(this.setUser.bind(this)).catch(console.error);
   }
@@ -28,6 +30,12 @@ class Modify extends Component {
       isOpen: (!this.state.isOpen)
     });
     // this.updateUser();
+  }
+
+  handleChange(e, field) {
+    this.setState({
+      [field]: e.target.value
+    });
   }
 
   getUserPicture() {
@@ -48,7 +56,8 @@ class Modify extends Component {
     // console.log(this.state);
     return (
       <div className={styles.profile}>
-            <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} />
+        <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} />
+
 
           {this.state.isOpen && (
             <div className={styles.menu}>
@@ -70,7 +79,7 @@ class Modify extends Component {
                       <a href="/api/auth/login">Login</a>
                     </li>
                   )
-                )}
+                  )}
               {this.state.loading && (
                 <li>
                   Loading
@@ -79,6 +88,10 @@ class Modify extends Component {
               </ul>
             </div>
           )}
+            <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
+            <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "answer")}/>
+    
+            <button className="btn btn-success">Submit</button>
       </div>
     );
   };
