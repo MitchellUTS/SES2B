@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>Next.js and Auth0 Example</h1>
+      <h1>SES 2B Questionnaire</h1>
 
       {loading && <p>Loading login info...</p>}
 
@@ -24,8 +24,7 @@ function Home() {
 
       {user && (
         <>
-          <a href="/api/users">Click me</a>
-          <p>{JSON.stringify(user)}</p>
+          <p>You are logged in <a href="/api/users">click here</a> to see your user ID (sub).</p>
         </>
       )}
     </Layout>
