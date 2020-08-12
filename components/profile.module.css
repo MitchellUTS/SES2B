@@ -5,12 +5,30 @@
 }
 
 .menu {
+    font-size: 15px;
     position: absolute;
-    /* width: 100px;
-    height: 200px; */
-    background: hotpink;
+    background: #333;
     padding: 0.7em;
     right: 16px;
+    border: 1px solid lightgrey;
+    /* box-shadow: 1px 1px 2px white; */
+}
+
+.menu li {
+    padding: 2px;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.menu a:visited {
+    color: white;
 }
 
 .menu ul {
