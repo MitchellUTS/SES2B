@@ -1,11 +1,33 @@
 import Head from 'next/head'
 import Header from './header'
 
-function Layout({ user, loading = false, children }) {
+const siteName = "SES 2B";
+const defaultMeta = {
+  title: "Unnamed Page",
+  description: "A page so new to " + siteName + " that it doesn't have a description.",
+  description: "/favicon.ico",
+};
+
+function validateMeta(meta) {
+  meta.title       = (meta.title       || defaultMeta.title) + " | " +  siteName;
+  meta.description = (meta.description || defaultMeta.description);
+  meta.image       = (meta.image       || defaultMeta.image);
+  return meta;
+}
+
+function Layout({ user, loading = false, meta = {}, children }) {
+
+  let valid_meta = validateMeta(meta);
+
   return (
     <>
       <Head>
-        <title>Example Nextjs app with Auth0</title>
+          <title>{ valid_meta.title }</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="og:title" content={ valid_meta.title } />
+          <meta name="description" content={ valid_meta.description } />
+          <meta property="og:image" content={ valid_meta.image } />
+          <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Header user={user} loading={loading} />
