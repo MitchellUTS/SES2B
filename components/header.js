@@ -37,14 +37,17 @@ function Header({ user, loading }) {
           padding: 0.2rem;
           color: #fff;
           background-color: #333;
+          font-size: 24px;
         }
         nav {
           padding: 0 1em;
-          margin: 1.5rem auto;
+          margin: 0.5rem auto;
         }
         ul {
           display: flex;
           list-style: none;
+          margin-top: 0;
+          margin-bottom: 0;
           margin-left: 0;
           padding-left: 0;
         }
