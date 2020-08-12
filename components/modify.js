@@ -57,8 +57,6 @@ class Modify extends Component {
     return (
       <div className={styles.profile}>
         <img src={this.getUserPicture()} alt="user picture" onClick={this.handleClick} />
-
-
           {this.state.isOpen && (
             <div className={styles.menu}>
               <ul>
@@ -88,10 +86,9 @@ class Modify extends Component {
               </ul>
             </div>
           )}
-            <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
-            <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "answer")}/>
-    
-            <button className="btn btn-success">Submit</button>
+        <input type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
+        <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
+        <button className="btn btn-success">Submit</button>
       </div>
     );
   };
