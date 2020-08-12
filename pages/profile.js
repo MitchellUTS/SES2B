@@ -7,7 +7,6 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading}>
-      <Profile user={user} loading={loading} />
       <h1>Next.js and Auth0 Example</h1>
 
       {loading && <p>Loading login info...</p>}
