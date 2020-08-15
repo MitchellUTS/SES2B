@@ -1,6 +1,4 @@
 import { Component } from 'react';
-import Link from 'next/link';
-import { useFetchUser, fetchUser } from '../lib/user'
 import styles from './profile.module.css';
 
 class Modify extends Component {
@@ -13,7 +11,7 @@ class Modify extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    // this.onHandleUpdate = this.onHandleUpdate.bind(this);
+    this.onHandleUpdate = this.onHandleUpdate.bind(this);
 
   }
 
@@ -23,18 +21,18 @@ class Modify extends Component {
     });
   }
 
-  // onHandleUpdate(e){
-  //   console.log(this.postId);
-  //   e.preventDefault();
-  //   database.ref('posts').child('${this.postId}').update({
-  //     question: this.state.question,
-  //     answer: this.state.answer
-  //   });
-  //   this.setState({
-  //     question: '',
-  //     answer: ''
-  //   });
-  // }
+  onHandleUpdate(e){
+    console.log(this.postId);
+    e.preventDefault();
+    // database.ref('posts').child('${this.postId}').update({
+    //   question: this.state.question,
+    //   answer: this.state.answer
+    // });
+    this.setState({
+      question: '',
+      answer: ''
+    });
+  } 
 
   render() {
     console.log(this.state);
@@ -46,7 +44,7 @@ class Modify extends Component {
           </div>
             <br/>
           <div className="form-group">
-          <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
+            <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
           </div>
           <button className="btn btn-success">Submit</button>
         </form>
