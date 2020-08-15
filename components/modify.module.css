@@ -1,0 +1,83 @@
+.div {
+    padding:"20px 980px 0",
+}
+
+.centerdiv {
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+}
+
+.menu {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 500px;
+    height: 150px;
+    background: rgb(138, 133, 114);
+    padding: 1.5em;
+}
+
+.form {
+    padding-left: 559px;
+    text-align: left;
+}
+
+.navitem {
+    /* position: inline; */
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: auto;
+    height: auto;
+    background: rgb(138, 133, 114);
+    padding: 1.5em;
+    flex-direction: row;
+}
+
+.title1 {
+    background: "linear-gradient(45deg, #536DFE 30%, #8C9EFF 90%)";
+    border: 0;
+    color: "white";
+    width: 500;
+    height: 48;
+    padding: "0 30px";
+    display: "flex";
+}
+
+.textarea {
+    border:2px solid #999999;
+    width: 475px;
+    height: 75px;
+    margin:5px 0; 
+    padding: 1; 
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.formControl {
+    display: "flex";
+    Width: 200;
+    margin:"5px 0";
+    padding:1;
+}
+
+.input {
+    display:"block";
+    outline: "none";
+    borderRadius: "5px";
+    borderStyle: "none";
+    height: "45px";
+    width: "400px";
+    padding:"0 16px";
+    fontSize: "16px";
+    backgroundColor: "rgb(250,250,250)";
+    margin: "0 auto";
+    border: "solid";
+}
