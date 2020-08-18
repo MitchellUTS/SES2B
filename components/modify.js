@@ -45,26 +45,23 @@ class Modify extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className={styles.centerdiv}>
+      <div className={styles.container}>
         <form onSubmit={this.onHandleUpdate}>
-          <div className={styles.menu}>
-            <h2>Question ID</h2>
-            <input type="text" value={this.state.id} onChange={e => this.handleChange(e, "id")}/>
+          <div>
+            <h3>Question ID</h3>
+            <input className={styles.text} type="text" value={this.state.id} onChange={e => this.handleChange(e, "id")}/>
           </div>
-            <br/>
-          <div className={styles.menu}>
-            <h2>Question</h2>
+          <div>
+            <h3>Question</h3>
             <textarea className={styles.textarea} type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
           </div>
-            <br/>
-          <div className={styles.menu}>
-            <h2>Answer</h2>
-            <input type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
+          <div>
+            <h3>Answer</h3>
+            <input className={styles.text} type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
           </div>
-            <br/>
-          <div className={styles.menu}> 
-            <h2>Level</h2>
-            <div className={styles.navitem}>
+          <div> 
+            <h3>Level</h3>
+            <div>
               <label>
                 <input type="radio" value="1" checked={this.state.selectedOption === '1'} onChange={this.handlOptionChange}/>
                 1
@@ -79,8 +76,8 @@ class Modify extends Component {
               </label>
             </div>
           </div>
-            <br/>
-          <button className="btn btn-success">Submit</button>
+          <br/>
+          <button className={styles.button}>Submit</button>
         </form>
       </div>
     );
