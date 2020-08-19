@@ -8,7 +8,7 @@ class Modify extends Component {
       id: '',
       question: '',
       answer: '',
-      post: {},
+      level: '',
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,7 +18,7 @@ class Modify extends Component {
   
   handlOptionChange = changeEvent => {
     this.setState({
-      selectedOption: changeEvent.target.value
+      level: changeEvent.target.value
     });
   }
 
@@ -37,8 +37,10 @@ class Modify extends Component {
     //   level: this.state.level
     // });
     this.setState({
+      id: '',
       question: '',
-      answer: ''
+      answer: '',
+      level: '',
     });
   } 
 
@@ -63,15 +65,15 @@ class Modify extends Component {
             <h3>Level</h3>
             <div>
               <label>
-                <input type="radio" value="1" checked={this.state.selectedOption === '1'} onChange={this.handlOptionChange}/>
+                <input type="radio" value="1" checked={this.state.level === '1'} onChange={this.handlOptionChange}/>
                 1
               </label>
               <label>
-                <input type="radio" value="2" checked={this.state.selectedOption === '2'} onChange={this.handlOptionChange}/>
+                <input type="radio" value="2" checked={this.state.level === '2'} onChange={this.handlOptionChange}/>
                 2
               </label>
               <label>
-                <input type="radio" value="3" checked={this.state.selectedOption === '3'} onChange={this.handlOptionChange}/>
+                <input type="radio" value="3" checked={this.state.level === '3'} onChange={this.handlOptionChange}/>
                 3
               </label>
             </div>
@@ -80,7 +82,7 @@ class Modify extends Component {
           <button className={styles.button}>Submit</button>
         </form>
       </div>
-    );
+    )
   };
 };
 
