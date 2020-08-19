@@ -1,6 +1,6 @@
 // import { Question } from '../../../lib/database';
 
-const dummyQuestions = [
+let dummyQuestions = [
     {
         id: "1",
         question: "Evaluate the following expression: 1 + 1 = ?",
@@ -35,9 +35,13 @@ export default async function get(req, res) {
                     res.status(200).json(question);
                 break;
             case "PUT":
-                    res.status(200).json(question);
+                    dummyQuestions[question_id].question = req.body.question;
+                    dummyQuestions[question_id].answer = req.body.answer;
+                    dummyQuestions[question_id].level = req.body.level;
+                    res.status(200).json(dummyQuestions[question_id]);
                 break;
             case "DELETE":
+                    dummyQuestions.splice(question_id, 1);
                     res.status(204).end();
                 break;
             default:
