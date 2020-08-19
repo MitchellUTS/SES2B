@@ -18,6 +18,8 @@ export default async function users(req, res) {
         let newUserObject = await user.save();
         res.json(newUserObject);
 
+        // await db.User.deleteMany({});
+
     } catch (err) {
         res.status(500).end("Internal Server Error: " + err);
         throw err;
