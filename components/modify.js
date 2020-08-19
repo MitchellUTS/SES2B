@@ -9,17 +9,18 @@ class Modify extends Component {
       id: '',
       question: '',
       answer: '',
-      level: '',
+      level: 0,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.onHandleUpdate = this.onHandleUpdate.bind(this);
+    this.onHandleCheck = this.onHandleCheck.bind(this);
 
   }
   
   handlOptionChange = changeEvent => {
     this.setState({
-      level: changeEvent.target.value
+      level: parseInt(changeEvent.target.value)
     });
   }
 
@@ -29,37 +30,54 @@ class Modify extends Component {
     });
   }
 
-  onHandleUpdate(e){
-    console.log(this.postId);
+  onHandleCheck(e){
+    // console.log(this.state.id);
     e.preventDefault();
-    axios.get("/api/questions/1")
+    axios.get("/api/questions/" + this.state.id)
+    .then((response) =>
+    this.setState({
+      question: response.data.question,
+      answer: response.data.answer,
+      level: response.data.level
+    }),
+    )
+    .catch(function (error) {
+      console.log(error);
+    });
+  } 
+
+  onHandleUpdate(e){
+    console.log(this.state.id);
+    e.preventDefault();
+    axios.put("/api/questions/" + this.state.id, {
+      question: this.state.question,
+      answer: this.state.answer,
+      level: this.state.level
+    })
       .then(function (response) {
         console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
-    // database.ref('posts').child('${this.postId}').update({
-    //   question: this.state.question,
-    //   answer: this.state.answer,
-    //   level: this.state.level
-    // });
+      
     this.setState({
       id: '',
       question: '',
       answer: '',
-      level: '',
+      level: 0,
     });
   } 
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className={styles.container}>
         <form onSubmit={this.onHandleUpdate}>
           <div>
             <h3>Question ID</h3>
             <input className={styles.text} type="text" value={this.state.id} onChange={e => this.handleChange(e, "id")}/>
+            <button className={styles.button} onClick={this.onHandleCheck}>Check</button>
           </div>
           <div>
             <h3>Question</h3>
@@ -73,15 +91,15 @@ class Modify extends Component {
             <h3>Level</h3>
             <div>
               <label>
-                <input type="radio" value="1" checked={this.state.level === '1'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={1} checked={this.state.level == 1} onChange={this.handlOptionChange}/>
                 1
               </label>
               <label>
-                <input type="radio" value="2" checked={this.state.level === '2'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={2} checked={this.state.level == 2} onChange={this.handlOptionChange}/>
                 2
               </label>
               <label>
-                <input type="radio" value="3" checked={this.state.level === '3'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={3} checked={this.state.level == 3} onChange={this.handlOptionChange}/>
                 3
               </label>
             </div>
