@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styles from './modify.module.css';
+const axios = require('axios').default;
 
 class Modify extends Component {
   constructor(props) {
@@ -31,6 +32,13 @@ class Modify extends Component {
   onHandleUpdate(e){
     console.log(this.postId);
     e.preventDefault();
+    axios.get("/api/questions/1")
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // database.ref('posts').child('${this.postId}').update({
     //   question: this.state.question,
     //   answer: this.state.answer,
