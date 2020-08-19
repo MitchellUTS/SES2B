@@ -24,7 +24,7 @@ function Home() {
 
       {user && (
         <>
-          <p>You are logged in <a href="/api/users">click here</a> to see your user ID (sub).</p>
+          <p>You are logged in.</p>
         </>
       )}
     </Layout>
