@@ -2,6 +2,22 @@ import auth0 from '../../lib/auth0';
 import Database from '../../lib/database'; // Import Class
 const db = global.database; // Bring the database into local file scoping
 
+async function createUser(req, res, sub) {
+    // Create a new user for the current user
+    let user = new db.User({sub: sub});
+    // Save the user
+    let newUserObject = await user.save();
+    res.json(newUserObject);
+}
+
+async function deleteAllUsers(req, res) {
+    await db.User.deleteMany({});
+}
+
+async function getCurrentUser(req, res, sub) {
+    res.json(await db.User.findOne({sub: sub}));
+}
+
 export default async function users(req, res) {
     try {
         const session = await auth0.getSession(req)
@@ -12,11 +28,9 @@ export default async function users(req, res) {
             return;
         }
 
-        // Create a new user for the current user
-        let user = new db.User({sub: session.user.sub});
-        // Save the user
-        let newUserObject = await user.save();
-        res.json(newUserObject);
+        // createUser(req, res, session.user.sub);
+        // deleteAllUsers(req, res);
+        getCurrentUser(req, res, session.user.sub);
 
         // await db.User.deleteMany({});
 
@@ -25,6 +39,4 @@ export default async function users(req, res) {
         throw err;
     }
 }
-
-
 
