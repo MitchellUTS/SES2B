@@ -1,6 +1,22 @@
 import auth0 from '../../lib/auth0';
-// import { table } from '../../lib/database';
-import { connection } from '../../lib/database';
+import Database from '../../lib/database'; // Import Class
+const db = global.database; // Bring the database into local file scoping
+
+async function createUser(req, res, sub) {
+    // Create a new user for the current user
+    let user = new db.User({sub: sub});
+    // Save the user
+    let newUserObject = await user.save();
+    res.json(newUserObject);
+}
+
+async function deleteAllUsers(req, res) {
+    await db.User.deleteMany({});
+}
+
+async function getCurrentUser(req, res, sub) {
+    res.json(await db.User.findOne({sub: sub}));
+}
 
 export default async function users(req, res) {
     try {
@@ -12,33 +28,15 @@ export default async function users(req, res) {
             return;
         }
 
-        let conn = await connection();
-        // console.log(conn);
-        res.send("a");
-        // let user = session.user;
-        // res.json(session.user.sub);
+        // createUser(req, res, session.user.sub);
+        // deleteAllUsers(req, res);
+        getCurrentUser(req, res, session.user.sub);
 
-        // let users = await table("SES2B", "users");
-        // users.find({sub: session.user.sub}).toArray(function(err, results) {
-        //     if (err) throw err;
-        //     if (results.length == 0) {
-        //         users.insert({sub: session.user.sub, usertype: 'user'}, function(err, result) {
-        //             if (err) {
-        //                 throw err;
-        //             } else {
-        //                 console.log(result);
-        //             }
-        //         });
-        //     } else {
-        //         console.log(results[0]);
-        //     }
-        // });
-        // res.send("TEST");
+        // await db.User.deleteMany({});
 
     } catch (err) {
-        res.status(500).end("Internal Server Error:" + err);
+        res.status(500).end("Internal Server Error: " + err);
+        throw err;
     }
 }
-
-
 
