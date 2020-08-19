@@ -1,6 +1,6 @@
 // import { Question } from '../../../lib/database';
 
-const dummyQuestions = [
+let dummyQuestions = [
     {
         id: "1",
         question: "Evaluate the following expression: 1 + 1 = ?",
@@ -28,7 +28,8 @@ export default async function get(req, res) {
                 res.status(200).json(dummyQuestions);
                 break;
             case "POST":
-                res.status(201).json(dummyQuestions[0]);
+                dummyQuestions.push(req.body);
+                res.status(201).json(dummyQuestions);
                 break;
             default:
                 res.status(405).json({ error: { code: 405, message: "Method Not Supported" } });
