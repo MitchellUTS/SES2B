@@ -112,4 +112,4 @@ class Modify extends Component {
   };
 };
 
-export default Create;
+export default Modify;
