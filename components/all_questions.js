@@ -21,6 +21,9 @@ class All_questions extends Component {
         questions: response.data
       });
     })
+    .catch(function (error){
+      console.log(error);
+    })
   }
 
   deleteBackground(e){
@@ -31,27 +34,32 @@ class All_questions extends Component {
     e.target.style.background = '#333';
   }
 
-  onHandleDelete(id){
+  onHandleDelete = id => {
     axios.delete('/api/questions/' + id)
-    .then(() => {
-        return axios.get('/api/questions')
-    })
     .then(response => {
-      const questions = response.data;
-      this.setState({ questions });
-      console.log(response);
+      //Returning <empty string>
+      console.log(response.data)
+      // this.setState({questions: response.data})
     })
+    // .then(() => {
+    //     return axios.get('/api/questions')
+    // })
+    // .then(response => {
+    //   const questions = response.data;
+    //   this.setState({ questions });
+    //   console.log(response);
+    // })
     .catch(function (error) {
       console.log(error);
-    })
+    });
   } 
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const contents = this.state.questions.map((item) => {
-        // {console.log(item)}
       return( 
         <tr key={item.id}>
+          <td>{item.id}</td>
           <td>{item.question}</td>
           <td>
             <button type="button"
@@ -66,7 +74,6 @@ class All_questions extends Component {
         </tr>
       )
     })
-    // console.log(contents);
     return (
       <div className="container">
         <div className="row">
@@ -74,6 +81,7 @@ class All_questions extends Component {
             <table className={styles.table}>
               <thead>  
                 <tr>
+                  <th>ID</th>
                   <th>Questions</th>
                   <th>Options</th>
                 </tr>
