@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from './header'
-import Sidebar from './sidebar'
+import Sidebar from './menu/sidebar'
 
 const siteName = "SES 2B";
 const defaultMeta = {

@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
-import Modify from '../components/modify'
+import Modify from '../components/forms/modify'
 
 const meta = {
   title: "Modify",
