@@ -9,7 +9,7 @@ const meta = {
 };
 
 function Home() {
-  const { user, loading} = useFetchUser()
+  const { user, loading } = useFetchUser()
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
