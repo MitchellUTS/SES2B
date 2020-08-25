@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Link from 'next/link';
-import { useFetchUser, fetchUser } from '../lib/user'
+import { useFetchUser, fetchUser } from '../../lib/user'
 import styles from './profile.module.css';
 
 class Profile extends Component {

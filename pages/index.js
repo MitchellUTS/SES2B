@@ -1,4 +1,4 @@
-import Layout from '../components/layout'
+import Layout from '../components/menu/layout'
 import { useFetchUser } from '../lib/user'
 
 const meta = {
