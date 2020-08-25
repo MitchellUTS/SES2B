@@ -33,7 +33,7 @@ class Create extends Component {
     console.log(this.state.id);
     e.preventDefault();
     axios.post("/api/questions/" , {
-      id: 4,
+      id: '4',
       question: this.state.question,
       answer: this.state.answer,
       level: this.state.level
