@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styles from './modify.module.css';
+const axios = require('axios').default;
 
 class Create extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class Create extends Component {
   
   handlOptionChange = changeEvent => {
     this.setState({
-      level: changeEvent.target.value
+      level: parseInt(changeEvent.target.value)
     });
   }
 
@@ -29,18 +30,28 @@ class Create extends Component {
   }
 
   onHandleUpdate(e){
-    console.log(this.postId);
+    console.log(this.state.id);
     e.preventDefault();
-    // database.ref('posts').child('${this.postId}').update({
-    //   question: this.state.question,
-    //   answer: this.state.answer,
-    //   level: this.state.level
-    // });
+    axios.post("/api/questions/" , {
+      id: 4,
+      question: this.state.question,
+      answer: this.state.answer,
+      level: this.state.level
+    })
+      .then(function (response) {
+        const countid = response.data.length;
+        console.log(response.data); 
+      }
+      )
+      .catch(function (error) {
+        console.log(error);
+      });
+      
     this.setState({
       id: '',
       question: '',
       answer: '',
-      level: '',
+      level: 0,
     });
   } 
 
@@ -49,10 +60,10 @@ class Create extends Component {
     return (
       <div className={styles.container}>
         <form onSubmit={this.onHandleUpdate}>
-          <div>
+          {/* <div>
             <h3>Question ID</h3>
             <input className={styles.text} type="text" value={this.state.id} onChange={e => this.handleChange(e, "id")}/>
-          </div>
+          </div> */}
           <div>
             <h3>Question</h3>
             <textarea className={styles.textarea} type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
@@ -65,15 +76,15 @@ class Create extends Component {
             <h3>Level</h3>
             <div>
               <label>
-                <input type="radio" value="1" checked={this.state.level === '1'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={1} checked={this.state.level === 1} onChange={this.handlOptionChange}/>
                 1
               </label>
               <label>
-                <input type="radio" value="2" checked={this.state.level === '2'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={2} checked={this.state.level === 2} onChange={this.handlOptionChange}/>
                 2
               </label>
               <label>
-                <input type="radio" value="3" checked={this.state.level === '3'} onChange={this.handlOptionChange}/>
+                <input type="radio" value={3} checked={this.state.level === 3} onChange={this.handlOptionChange}/>
                 3
               </label>
             </div>
