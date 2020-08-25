@@ -2,11 +2,17 @@ import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
 import Create from '../components/create'
 
+const meta = {
+  title: "Create",
+  description: "The form to create questions.",
+  //image: "/images/pfp.webp",
+};
+
 function Home() {
   const { user, loading } = useFetchUser();
 
   return (
-    <Layout user={user} loading={loading}>
+    <Layout user={user} loading={loading} meta={meta}>
       <h1>Create Form</h1>
       <Create user={user} loading={loading} />
 
