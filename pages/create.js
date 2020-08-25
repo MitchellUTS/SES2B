@@ -1,4 +1,4 @@
-import Layout from '../components/menu/layout'
+import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
 import Create from '../components/forms/create'
 
