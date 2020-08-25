@@ -1,49 +1,92 @@
+import { Component } from 'react';
 import styles from './all_questions.module.css';
+const axios = require('axios').default;
 
 
-function All_questions()
-{
+class All_questions extends Component {
+  
+  constructor(props) {
+    super(props);
 
-    return(
-<table className={styles.table}>
-  <thead>
-    <tr>
-      <th>Questions</th>
-      <th>Action</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Question Question Question</td>
-      <td><button type="button">Detail</button>
-      <button type="button">Delete</button></td>
-    </tr>
-    <tr>
-      <td>Question Question Question</td>
-      <td><button type="button">Detail</button>
-      <button type="button">Delete</button></td>
-    </tr>
-    <tr>
-      <td>Question Question Question</td>
-      <td><button type="button">Detail</button>
-      <button type="button">Delete</button></td>
-    </tr>
-    <tr>
-      <td>Question Question Question</td>
-      <td><button type="button">Detail</button>
-      <button type="button">Delete</button></td>
-    </tr>
-    <tr>
-      <td>Question Question Question</td>
-      <td><button type="button">Detail</button>
-      <button type="button">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
-    
+    this.state = {
+      questions: []
+    }
+    this.onHandleDelete = this.onHandleDelete.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get("/api/questions")
+    .then(response => {
+      this.setState({ 
+        questions: response.data
+      });
+    })
+  }
+
+  deleteBackground(e){
+    e.target.style.background = 'red';
+  }
+
+  defaultBackground(e){
+    e.target.style.background = '#333';
+  }
+
+  onHandleDelete(id){
+    axios.delete('/api/questions/' + id)
+    .then(() => {
+        return axios.get('/api/questions')
+    })
+    .then(response => {
+      const questions = response.data;
+      this.setState({ questions });
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  } 
+
+  render() {
+    console.log(this.state);
+    const contents = this.state.questions.map((item) => {
+        // {console.log(item)}
+      return( 
+        <tr key={item.id}>
+          <td>{item.question}</td>
+          <td>
+            <button type="button"
+              className={styles.button}>Detail</button>
+            &nbsp;&nbsp;&nbsp;  
+            <button type="button" 
+              onClick={ () => this.onHandleDelete(item.id)}
+              onMouseOver={this.deleteBackground}
+              onMouseLeave={this.defaultBackground}
+              className={styles.button}>Delete</button>
+          </td>
+        </tr>
+      )
+    })
+    // console.log(contents);
+    return (
+      <div className="container">
+        <div className="row">
+          <div>
+            <table className={styles.table}>
+              <thead>  
+                <tr>
+                  <th>Questions</th>
+                  <th>Options</th>
+                </tr>
+              </thead>
+              <tbody>
+               {contents}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     );
+  }
 }
-
 
 export default All_questions;
