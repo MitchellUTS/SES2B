@@ -38,7 +38,7 @@ const Sidebar = props => {
           width: 200px;
           height: 100%;
           background: #222;
-          padding: 30px 0;
+          padding: 0;
         }
 
         .wrapper .sidebar ul li{
