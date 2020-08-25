@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from './header'
+import Sidebar from './sidebar'
 
 const siteName = "SES 2B";
 const defaultMeta = {
@@ -32,6 +33,7 @@ function Layout({ user, loading = false, meta = {}, children }) {
       </Head>
 
       <Header user={user} loading={loading} />
+      <Sidebar/>
 
       <main>
         <div className="container">{children}</div>

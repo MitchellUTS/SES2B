@@ -1,65 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from "react-dom";
-
-// toggleClass(){
-//   const currentState = this.state.active;
-//   this.setState({})
-// }
-
 const Sidebar = props => {
-  // const [open, setOpen] = useState(false);
   
   return (
-    <>  
-    <div id ="sidebar">
-      <div onClick={toggleSidebar()} className="toggle-btn">
-        <span></span>
-        <span></span>
-        <span></span>
+    <>
+    <div className="wrapper">
+      <div className="sidebar">
+        <ul>
+          <li><a href="questions">Questions</a></li>
+          <li><a href="create">Create</a></li>
+          <li><a href="modify">Modify</a></li>
+        </ul>
       </div>
-
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
     </div>
 
       <style jsx>{`
-        * {
-          margin:0px;
-          padding:0px;
+        *{
+          margin: 0px;
+          padding: 0px;
+          box-sizing: border-box;
+          list-style: none;
+          text-decoration: none;
         }
-        #sidebar {
+
+        body{
+          background: #333;
+        }
+
+        .wrapper{
+          display: flex;
+          position: relative;
+        }
+
+        .wrapper .sidebar{
           position: fixed;
           width: 200px;
           height: 100%;
-          background:#222;
-          left:0px;
-          transition: all 500ms linear;
+          background: #222;
+          padding: 0;
         }
-        #siderbar.active {
-          left: -200px;
+
+        .wrapper .sidebar ul li{
+          padding: 15px;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+          border-top: 1px solid rgba(255,255,255,0.05);
         }
-        
-        #sidebar ul li {
-          color: rgba(230,230,230,0.9);
-          list-style: none;
-          padding:15px 10px;
-          border-bottom: 1px solid rgba(100,100,100,0.3);
+
+        .wrapper .sidebar ul li a{
+          color: #fff;
+          display: block;
         }
-        
-        #sidebar .toggle-btn {
-          position: absolute;
-          left: 230px;
-          top: 20px;
+
+        .wrapper .sidebar ul li:hover{
+          background: #333;
         }
-        #sidebar .toggle-btn span {
-          display:block;
-          width:30px;
-          height:5px;
-          background:#151719;
-          margin: 3px 0px;
+
+        .wrapper .sidebar ul li:hover a{
+          color: #fff;
         }
         `}</style>
       </>
@@ -67,8 +62,3 @@ const Sidebar = props => {
 }
 
 export default Sidebar;
-
-if (typeof window !== 'undefined') {
-  ReactDOM.render(<Sidebar />, document.getElementById("sidebar"));
-  
-}
