@@ -27,13 +27,15 @@ const Sidebar = props => {
 
         .wrapper{
           display: flex;
-          position: relative;
+          position: absolute;
+          height: 100%;
         }
 
         .wrapper .sidebar{
-          position: fixed;
-          width: 200px;
+          position: absolute;
+          float: left;
           height: 100%;
+          width: 200px;
           background: #222;
           padding: 0;
         }
