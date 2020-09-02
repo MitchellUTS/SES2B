@@ -1,4 +1,4 @@
-const db = global.database; // Bring the database into local file scoping
+import db from '../../../lib/database';
 
 export default async function get(req, res) {
     try {
