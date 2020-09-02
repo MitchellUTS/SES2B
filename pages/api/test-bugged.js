@@ -1,5 +1,5 @@
 import auth0 from '../../lib/auth0';
-import db from '../../../lib/database';
+import db from '../../lib/database';
 
 async function createUser(req, res, sub) {
     // Create a new user for the current user
