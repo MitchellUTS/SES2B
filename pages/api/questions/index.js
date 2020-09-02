@@ -1,5 +1,4 @@
-// import { Question } from '../../../lib/database';
-const db = global.database; // Bring the database into local file scoping
+import db from '../../../lib/database';
 
 export default async function get(req, res) {
     try {
@@ -9,7 +8,7 @@ export default async function get(req, res) {
                 res.status(200).json(questions);
                 break;
             case "POST":
-                let result = db.Question.insertMany(req.body.questions);
+                let result = await db.Question.insertMany(req.body);
                 res.status(201).json(result);
                 break;
             case "DELETE":
