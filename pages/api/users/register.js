@@ -19,6 +19,7 @@ export default async function users(req, res) {
         let userType = 'user';
         console.log(session.user.sub);
 
+
         // if (userExists) {
         //     updateName();
         // } else {
