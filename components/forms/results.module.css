@@ -1,0 +1,35 @@
+.aligntext {
+    /* width: 100%  ;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical; */
+    text-align: center;
+    line-height: 0.5;
+}
+
+.button {
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #72747252;
+    padding: 20px;
+}
+
+.center {
+    position: relative;
+    top: 10px;
+    left: 170px;
+}
