@@ -1,3 +1,23 @@
+.div{
+  width: 100%  ;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.ul {
+  list-style-type: none;
+}
+
+.ul li{
+  list-style-type: none;
+  margin: 5px;
+}
+
 .button {
     background-color: #333;
     color: #fff;
@@ -6,7 +26,6 @@
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-    margin-left: 10px;
 }
 
 .table {

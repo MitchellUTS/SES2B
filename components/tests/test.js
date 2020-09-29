@@ -17,6 +17,10 @@ class Test extends Component {
       score: 0,
       disabled: true
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.nextQuestionHandler = this.nextQuestionHandler.bind(this);
+    this.finishHandler = this.finishHandler.bind(this);
   }
 
   loadTest = () => {
@@ -29,7 +33,9 @@ class Test extends Component {
     })
   }
 
-  nextQuestionHandler = () => {
+  nextQuestionHandler = (e) => {
+    e.preventDefault();
+
     const {userAnswer, answer, score} = this.state
 
     if(userAnswer === answer){
@@ -40,7 +46,7 @@ class Test extends Component {
 
     this.setState({
       currentIndex: this.state.currentIndex + 1,
-      userAnswer: null
+      userAnswer: ''
     })
   }
 
@@ -70,6 +76,7 @@ class Test extends Component {
     if(this.state.currentIndex != prevState.currentIndex) {
       this.setState(() => {
         return {
+          // disabled: true,
           question: testData[currentIndex].question,
           answer: testData[currentIndex].answer
         }
@@ -81,16 +88,22 @@ class Test extends Component {
     this.setState({
       [field]: e.target.value
     });
-    this.checkAnswer(field)
   }
 
   finishHandler = () => {
-    if(this.state.currentIndex ===
-      testData.length -1) {
-        this.setState({
-          testEnd:true
-        })
-      }
+    const {userAnswer, answer, score} = this.state
+
+    if(userAnswer === answer){
+      this.setState({
+        score: score + 1
+    })
+    }
+
+    if(this.state.currentIndex===testData.length - 1){
+      this.setState({
+        testEnd: true
+      })
+    }
   }
 
   render() {
@@ -101,16 +114,16 @@ class Test extends Component {
         return (
           <div>
             <h1>Your Final Score is {this.state.score}</h1>
-            <p>The correct answers were</p>
-            <ul>
+            <p>The correct answers are:</p>
+            <ul className={styles.ul}>
               {testData.map((item, index) => (
                 <li
                 key={index}>
-                  {item.question}
+                  Question {item.id + 1}.&nbsp;&nbsp;&nbsp; {item.question}
                   <br></br>
                   <br></br>
-                  {item.answer}
-                  <br></br>
+                  Answer: {item.answer}
+                  <br></br> 
                   <br></br>
                   <br></br>
                 </li>
@@ -129,16 +142,22 @@ class Test extends Component {
       }
 
       return  ( 
-        <div>
+        // console.log(this.state),  
+        <div className={styles.div}>
           <h2>{question}</h2>
           <span>{`Question ${currentIndex + 1} of ${testData.length}`}</span>
+          <br></br>
+          <br></br>
           {
             <input className={styles.text} 
             type="text"
+            value={this.state.userAnswer}
             onChange={e => this.handleChange(e, "userAnswer")}
             />
           }
-
+          <br></br>
+          <br></br>
+          
           {currentIndex < testData.length - 1 && 
           <button className={styles.button} 
           onClick={this.nextQuestionHandler}>

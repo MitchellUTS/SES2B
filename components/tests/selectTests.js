@@ -62,12 +62,13 @@ class SelectTests extends Component {
           <td>{item.name}</td>
           <td>
             <button type="button"
-              className={styles.button}>Begin</button>
+            className={styles.button}>Begin</button>
             &nbsp;&nbsp;&nbsp;  
           </td>
         </tr>
       )
     })
+
     return (
       <div className="container">
         <div className="row">
@@ -80,7 +81,25 @@ class SelectTests extends Component {
                 </tr>
               </thead>
               <tbody>
-               {contents}
+                <tr>
+                  <td>Mock Test</td>
+                  <td>
+                    <button type="button"
+                    className={styles.button}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href='./test'
+                    }}
+                    >Begin</button>
+
+                    <button type="button"
+                    className={styles.button}>Details</button>
+                    
+                    <button type="button"
+                    className={styles.button}>Edit</button>      
+                  </td>
+                </tr>
+                {contents}
               </tbody>
             </table>
           </div>
