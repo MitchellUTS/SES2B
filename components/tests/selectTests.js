@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import styles from './tests.module.css';
+import styles from './selectTests.module.css';
 const axios = require('axios').default;
 
 
-class Tests extends Component {
+class SelectTests extends Component {
   
   constructor(props) {
     super(props);
@@ -90,4 +90,4 @@ class Tests extends Component {
   }
 }
 
-export default Tests;
+export default SelectTests;

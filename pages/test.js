@@ -1,10 +1,10 @@
 import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
-import Tests from '../components/tests/selectTests'
+import Test from '../components/tests/test'
 
 const meta = {
-  title: "Test Select",
-  description: "Place for users to select their tests",
+  title: "Test",
+  description: "Please Select an Answer",
   //image: "/images/pfp.webp",
 };
 
@@ -13,8 +13,7 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>Select a Test</h1>
-        <Tests/>
+        <Test/>
     </Layout>
   )
 }
