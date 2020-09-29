@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import styles from './tests.module.css';
+import styles from './selectTests.module.css';
 const axios = require('axios').default;
 
 
-class Tests extends Component {
+class SelectTests extends Component {
   
   constructor(props) {
     super(props);
@@ -62,12 +62,13 @@ class Tests extends Component {
           <td>{item.name}</td>
           <td>
             <button type="button"
-              className={styles.button}>Begin</button>
+            className={styles.button}>Begin</button>
             &nbsp;&nbsp;&nbsp;  
           </td>
         </tr>
       )
     })
+
     return (
       <div className="container">
         <div className="row">
@@ -80,7 +81,25 @@ class Tests extends Component {
                 </tr>
               </thead>
               <tbody>
-               {contents}
+                <tr>
+                  <td>Mock Test</td>
+                  <td>
+                    <button type="button"
+                    className={styles.button}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href='./test'
+                    }}
+                    >Begin</button>
+
+                    <button type="button"
+                    className={styles.button}>Details</button>
+                    
+                    <button type="button"
+                    className={styles.button}>Edit</button>      
+                  </td>
+                </tr>
+                {contents}
               </tbody>
             </table>
           </div>
@@ -90,4 +109,4 @@ class Tests extends Component {
   }
 }
 
-export default Tests;
+export default SelectTests;
