@@ -18,9 +18,12 @@ export default async function get(req, res) {
                     }
                 );
                 console.log(test);
+                if(userTest.numOfQuestionsAnswered === test.numberOfQuestions) {
+                    res.status(200).json("Test is complete, no more questions");
+                }
                 let questionsOfTestLevel = test.questions.filter(function(question) {
                     return question.level == userTest.testResult;
-                })
+                });
                 if(!(Array.isArray(questionsOfTestLevel) && questionsOfTestLevel.length)) {
                     res.status(200).json("This user is too good, I have no more questions for them");
                 } else {
@@ -55,7 +58,8 @@ export default async function get(req, res) {
                         {
                             $set:
                             {
-                                testResult: userTest.testResult + 1
+                                testResult: userTest.testResult + 1,
+                                numOfQuestionsAnswered: userTest.numOfQuestionsAnswered + 1
                             }
                         }
                     )
@@ -68,7 +72,8 @@ export default async function get(req, res) {
                         {
                             $set:
                             {
-                                testResult: userTest.testResult == 1 ? userTest.testResult : userTest.testResult - 1
+                                testResult: userTest.testResult == 1 ? userTest.testResult : userTest.testResult - 1,
+                                numOfQuestionsAnswered: userTest.numOfQuestionsAnswered + 1
                             }
                         }
                     )
