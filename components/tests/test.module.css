@@ -1,4 +1,4 @@
-.div{
+.div {
   width: 100%  ;
   padding: 12px;
   border: 1px solid #ccc;
@@ -9,11 +9,21 @@
   resize: vertical;
 }
 
+.options {
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #666;
+  color: white;
+  font-weight: bold;
+}
+
 .ul {
   list-style-type: none;
 }
 
-.ul li{
+.ul li {
   list-style-type: none;
   margin: 5px;
 }
@@ -27,25 +37,3 @@
     cursor: pointer;
     text-align: center;
 }
-
-.table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-.table td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-
-.table th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-.table tr:nth-child(even) {
-    background-color: #dddddd;
-  }

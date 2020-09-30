@@ -10,7 +10,7 @@ class Test extends Component {
     super(props);
 
     this.state = {
-      userAnswer: null,
+      userAnswer: "",
       currentIndex: 0,
       options: [],
       testEnd: false,
@@ -28,6 +28,7 @@ class Test extends Component {
     this.setState(() => {
       return {
         question: testData[currentIndex].question,
+        options: testData[currentIndex].options,
         answer: testData[currentIndex].answer
       }
     })
@@ -64,7 +65,7 @@ class Test extends Component {
     this.loadTest();
   }
 
-  checkAnswer = answer => {
+  checkAnswer = (answer) => {
     this.setState({
       userAnswer: answer,
       disabled: false
@@ -78,6 +79,7 @@ class Test extends Component {
         return {
           // disabled: true,
           question: testData[currentIndex].question,
+          options: testData[currentIndex].options,
           answer: testData[currentIndex].answer
         }
       })
@@ -143,17 +145,29 @@ class Test extends Component {
 
       return  ( 
         // console.log(this.state),  
+      <>
         <div className={styles.div}>
           <h2>{question}</h2>
           <span>{`Question ${currentIndex + 1} of ${testData.length}`}</span>
           <br></br>
           <br></br>
-          {
+          { options == null &&
             <input className={styles.text} 
             type="text"
             value={this.state.userAnswer}
             onChange={e => this.handleChange(e, "userAnswer")}
             />
+          }
+
+          { options != null &&
+            options.map((option, index) =>
+              <p key = {index} 
+              onClick = {(e) => {this.checkAnswer(option);}}
+              className={`options ${userAnswer === option? "selected" : null}`}
+              >
+                  {option}
+              </p>
+            )
           }
           <br></br>
           <br></br>
@@ -170,7 +184,25 @@ class Test extends Component {
             Finish
           </button>}
         </div>
+
+      <style jsx>{`
+        .selected {
+          background: #333 !important;
+        }
+
+        .options {
+          padding: 8px;
+          border: 1px solid #000;
+          border-radius: 4px;
+          cursor: pointer;
+          background-color: #666;
+          color: white;
+          font-weight: bold;
+        }
+        `}</style>
+      </>
       )
+      
   }
 }
 
