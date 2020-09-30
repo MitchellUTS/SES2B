@@ -15,7 +15,8 @@ class Test extends Component {
       options: [],
       testEnd: false,
       score: 0,
-      disabled: true
+      disabled: true,
+      questions: testData
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,11 +26,12 @@ class Test extends Component {
 
   loadTest = () => {
     const {currentIndex} = this.state;
+    const {questions} = this.state; 
     this.setState(() => {
       return {
-        question: testData[currentIndex].question,
-        options: testData[currentIndex].options,
-        answer: testData[currentIndex].answer
+        question: questions[currentIndex].question,
+        options: questions[currentIndex].options,
+        answer: questions[currentIndex].answer
       }
     })
   }
@@ -58,12 +60,14 @@ class Test extends Component {
         tests: response.data
       });
       console.log(response.data);
+      this.setState({questions: response.data[2].questions});
+      this.loadTest();
     })
     .catch(function (error){
       console.log(error);
+      this.loadTest();
     })
 
-    this.loadTest();
   }
 
   checkAnswer = (answer) => {
@@ -75,13 +79,15 @@ class Test extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const{currentIndex} = this.state;
+    const {questions} = this.state; 
+
     if(this.state.currentIndex != prevState.currentIndex) {
       this.setState(() => {
         return {
           // disabled: true,
-          question: testData[currentIndex].question,
-          options: testData[currentIndex].options,
-          answer: testData[currentIndex].answer
+          question: questions[currentIndex].question,
+          options: questions[currentIndex].options,
+          answer: questions[currentIndex].answer
         }
       })
     }
@@ -102,7 +108,7 @@ class Test extends Component {
     })
     }
 
-    if(this.state.currentIndex===testData.length - 1){
+    if(this.state.currentIndex===this.state.questions.length - 1){
       this.setState({
         testEnd: true
       })
@@ -119,10 +125,10 @@ class Test extends Component {
             <h1>Your Final Score is {this.state.score}</h1>
             <p>The correct answers are:</p>
             <ul className={styles.ul}>
-              {testData.map((item, index) => (
+              {this.state.questions.map((item, index) => (
                 <li
                 key={index}>
-                  Question {item.id + 1}.&nbsp;&nbsp;&nbsp; {item.question}
+                  Question {index + 1}.&nbsp;&nbsp;&nbsp; {item.question}
                   <br></br>
                   <br></br>
                   Answer: {item.answer}
@@ -149,7 +155,7 @@ class Test extends Component {
       <>
         <div className={styles.div}>
           <h2>{question}</h2>
-          <span>{`Question ${currentIndex + 1} of ${testData.length}`}</span>
+          <span>{`Question ${currentIndex + 1} of ${this.state.questions.length}`}</span>
           <br></br>
           <br></br>
           { options == null &&
@@ -173,13 +179,13 @@ class Test extends Component {
           <br></br>
           <br></br>
           
-          {currentIndex < testData.length - 1 && 
+          {currentIndex < this.state.questions.length - 1 && 
           <button className={styles.button} 
           onClick={this.nextQuestionHandler}>
             Next Question
           </button>}
             
-          {currentIndex === testData.length - 1 && 
+          {currentIndex === this.state.questions.length - 1 && 
           <button className={styles.button} 
           onClick={this.finishHandler}>
             Finish
