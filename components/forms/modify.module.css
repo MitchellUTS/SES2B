@@ -9,6 +9,11 @@
     resize: vertical;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .button {
     background-color: #333;
     color: #fff;
