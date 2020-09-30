@@ -146,32 +146,6 @@ class Test extends Component {
                     <button className={resultStyles.button} onClick={this.answersHandler}>View Answers</button>
                 </div>
             </div>
-          // <div>
-          //   <h1>Your Final Score is {this.state.score}</h1>
-          //   <p>The correct answers are:</p>
-          //   <ul className={styles.ul}>
-          //     {this.state.questions.map((item, index) => (
-          //       <li
-          //       key={index}>
-          //         Question {index + 1}.&nbsp;&nbsp;&nbsp; {item.question}
-          //         <br></br>
-          //         <br></br>
-          //         Answer: {item.answer}
-          //         <br></br> 
-          //         <br></br>
-          //         <br></br>
-          //       </li>
-          //     ))}
-          //   </ul>
-          //   <button 
-          //   className = {styles.button}
-          //   onClick={(e) => {
-          //     e.preventDefault();
-          //     window.location.href='./tests'
-          //   }}>
-          //     Return to Tests 
-          //   </button>
-          // </div>
         )
       }
 
