@@ -70,6 +70,7 @@ class Modify extends Component {
   } 
 
   render() {
+    const{selectValue} = this.state
     // console.log(this.state);
     return (
       <div className={styles.container}>
@@ -80,13 +81,39 @@ class Modify extends Component {
             <button className={styles.button} onClick={this.onHandleCheck}>Check</button>
           </div>
           <div>
+            <h3>Type</h3>
+            <select 
+            className={styles.dropdown}
+            value={this.state.selectValue}
+            onChange={ e => this.handleChange(e, "selectValue")}>
+              <option value = "sa">Short Answer</option>
+              <option value = "mc">Multiple Choice</option>
+            </select>
+          </div>
+          <div>
             <h3>Question</h3>
             <textarea className={styles.textarea} type="text" value={this.state.question} onChange={e => this.handleChange(e, "question")}/>
           </div>
+          
+          { selectValue == "mc" &&
+            <div>
+              <h3>Options</h3>
+              <input className={styles.text} type="text" value={this.state.options} onChange={e => this.handleChange(e, "option")}/>
+              <button type ="button" onClick={this.addOption} className={styles.button}>Add Option</button>
+              &nbsp;&nbsp;&nbsp; 
+              <button type ="button" className={styles.button}>Remove Option</button>
+              <h3>Answer</h3>
+              <input className={styles.text} type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
+            </div>
+          }
+
+          { selectValue == "sa" &&
           <div>
             <h3>Answer</h3>
             <input className={styles.text} type="text" value={this.state.answer} onChange={e => this.handleChange(e, "answer")}/>
           </div>
+          }
+
           <div> 
             <h3>Level</h3>
             <div>

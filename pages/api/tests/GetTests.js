@@ -4,10 +4,21 @@ export default async function get(req, res) {
     try {
         switch (req.method) {
             case "GET":
+                // Returns an array of all the tests a user can take
                 let tests = await db.Test.find({});
-                res.status(200).json(tests);
+                const testList = [];
+                tests.forEach(t => {
+                    testList.push(
+                        {
+                            _id: t._id,
+                            name: t.name
+                        }
+                    )
+                });
+                res.status(200).json(testList);
                 break;
             case "POST":
+                // For a user to start a new test. Send a userId and TestId in the body
                 let test = new db.Test(req.body);
                 test = await test.save();
                 res.status(201).json(test);
