@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
-import Results from '../components/forms/results'
+import Results from '../components/results'
 
 const meta = {
     title: "Results",
