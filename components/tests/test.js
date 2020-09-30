@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './test.module.css';
-import testData from './testData'
+import testData from './testData';
 const axios = require('axios').default;
 
 
@@ -57,6 +57,7 @@ class Test extends Component {
       this.setState({ 
         tests: response.data
       });
+      console.log(response.data);
     })
     .catch(function (error){
       console.log(error);
