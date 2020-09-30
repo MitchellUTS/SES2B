@@ -1,4 +1,6 @@
+// import { Db } from 'mongodb';
 import auth0 from '../../../lib/auth0';
+import db from '../../../lib/database';
 
 export default async function users(req, res) {
     try {
@@ -19,6 +21,9 @@ export default async function users(req, res) {
         let userType = 'user';
         console.log(session.user.sub);
 
+        if(!db.User.find(session.user.sub)){
+            
+        }
 
         // if (userExists) {
         //     updateName();
