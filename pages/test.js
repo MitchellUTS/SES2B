@@ -9,11 +9,12 @@ const meta = {
 };
 
 function Home() {
-  const { user, loading } = useFetchUser()
+  const { user, loading } = useFetchUser();
+  
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-        <Test/>
+        <Test id={"5f73e6cc7bf9aa014b5d2f1d"}/>
     </Layout>
   )
 }

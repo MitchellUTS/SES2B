@@ -7,6 +7,7 @@ const axios = require('axios').default;
 class Test extends Component {
   
   constructor(props) {
+    console.log(props);
     super(props);
 
     this.state = {
@@ -16,7 +17,8 @@ class Test extends Component {
       testEnd: false,
       score: 0,
       disabled: true,
-      questions: testData
+      questions: testData,
+      quizID: props.id
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,20 +56,19 @@ class Test extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/tests")
+    axios.get("/api/tests/" + this.state.quizID)
     .then(response => {
       this.setState({ 
         tests: response.data
       });
-      console.log(response.data);
-      this.setState({questions: response.data[2].questions});
+      this.setState({questions: response.data.questions});
+      console.log(this.state.questions);
       this.loadTest();
     })
     .catch(function (error){
       console.log(error);
       this.loadTest();
     })
-
   }
 
   checkAnswer = (answer) => {
@@ -108,7 +109,7 @@ class Test extends Component {
     })
     }
 
-    if(this.state.currentIndex===this.state.questions.length - 1){
+    if(this.state.currentIndex === this.state.questions.length - 1){
       this.setState({
         testEnd: true
       })
