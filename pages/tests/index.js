@@ -1,6 +1,6 @@
-import Layout from '../components/layout'
-import { useFetchUser } from '../lib/user'
-import Tests from '../components/tests/selectTests'
+import Layout from '../../components/layout'
+import { useFetchUser } from '../../lib/user'
+import Tests from '../../components/tests/selectTests'
 
 const meta = {
   title: "Test Select",
