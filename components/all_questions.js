@@ -15,7 +15,7 @@ class All_questions extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/questions")
+    axios.get("/api/tests")
     .then(response => {
       this.setState({ 
         questions: response.data
@@ -58,12 +58,15 @@ class All_questions extends Component {
     // console.log(this.state);
     const contents = this.state.questions.map((item) => {
       return( 
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.question}</td>
+        <tr key={item._id}>
+          <td>{item._id}</td>
+          <td>{item.name}</td>
           <td>
             <button type="button"
-              className={styles.button}>Detail</button>
+              className={styles.button} onClick={(e) => {
+                e.preventDefault();
+                window.location.href='./list/' + item._id
+              }}>Detail</button>
             &nbsp;&nbsp;&nbsp;  
             <button type="button" 
               onClick={ () => this.onHandleDelete(item.id)}
@@ -82,7 +85,7 @@ class All_questions extends Component {
               <thead>  
                 <tr>
                   <th>ID</th>
-                  <th>Questions</th>
+                  <th>Tests</th>
                   <th>Options</th>
                 </tr>
               </thead>
