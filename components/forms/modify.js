@@ -6,7 +6,7 @@ class Modify extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
+      questions: [],
       question: '',
       answer: '',
       level: 0,
@@ -17,12 +17,25 @@ class Modify extends Component {
     this.onHandleCheck = this.onHandleCheck.bind(this);
 
   }
+
+  componentDidMount() {
+    axios.get("/api/questions")
+    .then(response => {
+      this.setState({ 
+        questions: response.data
+      });
+    })
+    .catch(function (error){
+      console.log(error);
+    })
+  }
   
   handlOptionChange = changeEvent => {
     this.setState({
       level: parseInt(changeEvent.target.value)
     });
   }
+
 
   handleChange(e, field) {
     this.setState({
@@ -71,7 +84,7 @@ class Modify extends Component {
 
   render() {
     const{selectValue} = this.state
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className={styles.container}>
         <form onSubmit={this.onHandleUpdate}>

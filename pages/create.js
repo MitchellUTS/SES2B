@@ -23,14 +23,6 @@ function Home() {
             {/* <a href="/api/auth/login">Login</a> to see your profile */}
         </p>
       )}
-
-      {user && (
-        <>
-          <p>Name: {user.name}</p>
-          <p>Nickname: {user.nickname}</p>
-          <img src={user.picture} alt="user picture" />
-        </>
-      )}
     </Layout>
   )
 }

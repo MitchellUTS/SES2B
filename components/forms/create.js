@@ -6,7 +6,6 @@ class Create extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
       question: '',
       answer: '',
       level: '',
@@ -33,10 +32,8 @@ class Create extends Component {
   }
 
   onHandleUpdate(e){
-    console.log(this.state.id);
     e.preventDefault();
     axios.post("/api/questions/" , {
-      id: '4',
       question: this.state.question,
       answer: this.state.answer,
       level: this.state.level
@@ -51,7 +48,6 @@ class Create extends Component {
       });
       
     this.setState({
-      id: '',
       question: '',
       answer: '',
       level: 0,
@@ -67,14 +63,10 @@ class Create extends Component {
 
   render() {
     const{selectValue} = this.state
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className={styles.container}>
         <form onSubmit={this.onHandleUpdate}>
-          {/* <div>
-            <h3>Question ID</h3>
-            <input className={styles.text} type="text" value={this.state.id} onChange={e => this.handleChange(e, "id")}/>
-          </div> */}
           <div>
             <h3>Type</h3>
             <select 
