@@ -66,12 +66,13 @@ class All_questions extends Component {
             <button type="button"
               className={styles.button}>Detail</button>
             &nbsp;&nbsp;&nbsp;
-            <Link to={{
-              pathname: "/modify",
-              data: item._id
-            }}><a>
-              <button type="button" className={styles.button}>Edit</button>
-            </a></Link>
+              <button type="button"
+               onClick={() => {this.props.history.push({
+                 pathname: '/modify',
+                 data: item._id
+                })
+              }}
+               className={styles.button}>Edit</button>
             &nbsp;&nbsp;&nbsp;    
             <button type="button" 
               onClick={ () => this.onHandleDelete(item._id)}
