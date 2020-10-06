@@ -80,10 +80,11 @@ class Modify extends Component {
       answer: '',
       level: 0,
     });
+
+    alert("Question has been successfully modified!")
   } 
 
   render() {
-    const{data} = this.props.location.state
     const{selectValue} = this.state
     console.log(this.state);
     return (

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from './all_questions.module.css';
 import { Link } from 'react-router-dom';
+import { timingSafeEqual } from 'crypto';
 const axios = require('axios').default;
 
 
@@ -33,6 +34,13 @@ class All_questions extends Component {
 
   defaultBackground(e){
     e.target.style.background = '#333';
+  }
+
+  onHandleEdit = (qid) => {
+    this.context.router.push({
+      pathname: "/modify",
+      state: { QuestionID: qid}
+    })
   }
 
   onHandleDelete = id => {
@@ -68,9 +76,9 @@ class All_questions extends Component {
             &nbsp;&nbsp;&nbsp;
             <Link to={{
               pathname: '/modify',
-              state: [{id: item._id, question: item.question}]
+              state: [{id: item._id}]
             }}><a>
-              <button>className={styles.button}>Edit</button>
+              <button onClick={ () => this.onHandleEdit(item._id)}>className={styles.button}>Edit</button>
                </a></Link>
             &nbsp;&nbsp;&nbsp;    
             <button type="button" 

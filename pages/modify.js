@@ -14,10 +14,7 @@ function Home() {
   return (
     <Layout user={user} loading={loading} meta={meta}>
       <h1>Modify Form</h1>
-      <Modify user={user} loading={loading} />
-
-      {loading && <p>Loading login info...</p>}
-
+      <Modify  user={user} loading={loading} />
     </Layout>
   )
 }

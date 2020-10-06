@@ -52,6 +52,8 @@ class Create extends Component {
       answer: '',
       level: 0,
     });
+
+    alert("Question has been successfully created!")
   } 
 
   addOption(e) {
