@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styles from './all_questions.module.css';
+import Link from 'next/link';
 const axios = require('axios').default;
 
 
