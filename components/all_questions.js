@@ -16,7 +16,7 @@ class All_questions extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/questions")
+    axios.get("/api/questions/")
     .then(response => {
       this.setState({ 
         questions: response.data
@@ -59,14 +59,17 @@ class All_questions extends Component {
     // console.log(this.state);
     const contents = this.state.questions.map((item) => {
       return( 
-        <tr key={item.id}>
-          <td>{item.id}</td>
+        <tr key={item._id}>
+          <td>{item._id}</td>
           <td>{item.question}</td>
           <td>
             <button type="button"
               className={styles.button}>Detail</button>
             &nbsp;&nbsp;&nbsp;
-            <Link href={'/modify/' + item._id}><a>
+            <Link to={{
+              pathname: "/modify",
+              data: item._id
+            }}><a>
               <button type="button" className={styles.button}>Edit</button>
             </a></Link>
             &nbsp;&nbsp;&nbsp;    
