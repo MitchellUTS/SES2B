@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './all_questions.module.css';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 const axios = require('axios').default;
 
 
@@ -66,13 +66,12 @@ class All_questions extends Component {
             <button type="button"
               className={styles.button}>Detail</button>
             &nbsp;&nbsp;&nbsp;
-              <button type="button"
-               onClick={() => {this.props.history.push({
-                 pathname: '/modify',
-                 data: item._id
-                })
-              }}
-               className={styles.button}>Edit</button>
+            <Link to={{
+              pathname: '/modify',
+              state: [{id: item._id, question: item.question}]
+            }}><a>
+              <button>className={styles.button}>Edit</button>
+               </a></Link>
             &nbsp;&nbsp;&nbsp;    
             <button type="button" 
               onClick={ () => this.onHandleDelete(item._id)}

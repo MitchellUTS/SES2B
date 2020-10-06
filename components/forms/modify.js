@@ -83,7 +83,7 @@ class Modify extends Component {
   } 
 
   render() {
-    const{data} = this.props.location
+    const{data} = this.props.location.state
     const{selectValue} = this.state
     console.log(this.state);
     return (
