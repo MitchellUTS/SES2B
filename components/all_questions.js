@@ -64,9 +64,13 @@ class All_questions extends Component {
           <td>
             <button type="button"
               className={styles.button}>Detail</button>
-            &nbsp;&nbsp;&nbsp;  
+            &nbsp;&nbsp;&nbsp;
+            <Link href={'/modify/' + item._id}><a>
+              <button type="button" className={styles.button}>Edit</button>
+            </a></Link>
+            &nbsp;&nbsp;&nbsp;    
             <button type="button" 
-              onClick={ () => this.onHandleDelete(item.id)}
+              onClick={ () => this.onHandleDelete(item._id)}
               onMouseOver={this.deleteBackground}
               onMouseLeave={this.defaultBackground}
               className={styles.button}>Delete</button>
