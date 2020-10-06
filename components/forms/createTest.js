@@ -5,8 +5,10 @@ const axios = require('axios').default;
 class CreateTest extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
-        this.handleChange = this.handleChange.bind(this); 
+        this.state = {
+            value: ""};
+        this.handleChange = this.handleChange.bind(this);
+         
     }
     handleChange(event) {
         this.setState({value: event.target.value});
@@ -17,26 +19,36 @@ class CreateTest extends Component {
                 <form>
                     <h3>
                         Test ID:
-                        <input type="text" value={this.state.value} onChange={this.handleChange}/>
-                    </h3>
-                </form>
-                <form>
-                    <h3>
+                        <input type="text"
+                        name="ID" 
+                        value={this.state.ID} 
+                        onChange={this.handleChange}/>
+                   </h3>
+                   <h3>
                         Test Name:
-                        <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                        <input type="text" 
+                        name="Name"
+                        value={this.state.Name} 
+                        onChange={this.handleChange}/>
                     </h3>
                 </form>
             
-                <h3>Test Subject:</h3>
+                <h3>Test Subject:
+
                 <select>
                     <option selected value> Arithmetic </option>
                     <option> Algebra </option>
                     <option> Geometry </option> 
                     <option> Trigonometry </option>
                 </select>
+                </h3>
 
                 <h3>Test Description:</h3>
-                <textarea>
+                <textarea 
+                value={this.state.textAreaValue}
+                onChange={this.handleChange}
+                rows={5}
+                cols={80}> 
                     this test will have x number questions 
                 </textarea>
 
