@@ -19,7 +19,7 @@ export default async function users(req, res) {
    
         let user = await db.User.findOne(
             {
-                sub: userSub
+                sub: session.user.sub
             }            
         )
 

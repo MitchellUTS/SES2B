@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Sidebar = props => {
   
   return (
@@ -5,10 +7,11 @@ const Sidebar = props => {
     <div className="wrapper">
       <div className="sidebar">
         <ul>
-          <li><a href="/tests">Tests</a></li>
-          <li><a href="/list">Admin</a></li>
-          <li><a href="/create">Create</a></li>
-          <li><a href="/modify">Modify</a></li>
+
+          <li><Link href="/tests"><a>Tests</a></Link></li>
+          <li><Link href="/list"><a>Admin</a></Link></li>
+          <li><Link href="/create"><a>Create</a></Link></li>
+          <li><Link href="/modify"><a>Modify</a></Link></li>
         </ul>
       </div>
     </div>
