@@ -74,10 +74,7 @@ class All_questions extends Component {
             <button type="button"
               className={styles.button}>Detail</button>
             &nbsp;&nbsp;&nbsp;
-            <Link to={{
-              pathname: '/modify',
-              state: [{id: item._id}]
-            }}><a>
+            <Link href = "/modify"><a>
               <button onClick={ () => this.onHandleEdit(item._id)}>className={styles.button}>Edit</button>
                </a></Link>
             &nbsp;&nbsp;&nbsp;    

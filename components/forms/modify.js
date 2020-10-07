@@ -62,6 +62,9 @@ class Modify extends Component {
   onHandleUpdate(e){
     console.log(this.state.id);
     e.preventDefault();
+    if(this.state.question === "" || this.state.answer === "" || this.state.level === ""){
+      alert("Please fill in all the fields!")
+    } else{
     axios.put("/api/questions/" + this.state.id, {
       question: this.state.question,
       answer: this.state.answer,
@@ -80,8 +83,8 @@ class Modify extends Component {
       answer: '',
       level: 0,
     });
-
     alert("Question has been successfully modified!")
+    }
   } 
 
   render() {

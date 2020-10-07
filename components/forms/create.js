@@ -33,27 +33,31 @@ class Create extends Component {
 
   onHandleUpdate(e){
     e.preventDefault();
-    axios.post("/api/questions/" , {
-      question: this.state.question,
-      answer: this.state.answer,
-      level: this.state.level
-    })
-      .then(function (response) {
-        const countid = response.data.length;
-        console.log(response.data); 
-      }
-      )
-      .catch(function (error) {
-        console.log(error);
-      });
+    if(this.state.question === "" || this.state.answer === "" || this.state.level === ""){
+      alert("Please fill in all the fields!")
+    } else{
       
-    this.setState({
-      question: '',
-      answer: '',
-      level: 0,
-    });
-
-    alert("Question has been successfully created!")
+      axios.post("/api/questions/" , {
+        question: this.state.question,
+        answer: this.state.answer,
+        level: this.state.level
+      })
+        .then(function (response) {
+          const countid = response.data.length;
+          console.log(response.data); 
+        }
+        )
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+      this.setState({
+        question: '',
+        answer: '',
+        level: 0,
+      });
+      alert("Question has been successfully created!")
+    }
   } 
 
   addOption(e) {
