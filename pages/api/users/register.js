@@ -19,18 +19,18 @@ export default async function users(req, res) {
    
         let user = await db.User.findOne(
             {
-                sub: userSub
+                sub: session.user.sub
             }            
         )
 
         if(!user){
             let user = new db.User({
-                        sub: session.user.sub,
-                        email: session.user.name,
-                        userName: session.user.nickname,
-                        userType: userType
-                    });
-                        user = await user.save();
+                sub: session.user.sub,
+                email: session.user.name,
+                userName: session.user.nickname,
+                userType: userType
+            });
+                user = await user.save();
         }
         
     } catch (err) {
