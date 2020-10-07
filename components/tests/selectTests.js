@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Link from 'next/link';
 import styles from './selectTests.module.css';
 const axios = require('axios').default;
 
@@ -61,9 +62,20 @@ class SelectTests extends Component {
         <tr>
           <td>{item.name}</td>
           <td>
-            <button type="button"
-            className={styles.button}>Begin</button>
-            &nbsp;&nbsp;&nbsp;  
+            <Link href={'/tests/' + item._id}><a>
+              <button type="button" className={styles.button}>Begin</button>
+            </a></Link>
+            
+
+            <Link href='./test'><a>
+              <button type="button"
+              className={styles.button}>Details</button>
+            </a></Link>
+            
+            <Link href='./test'><a>
+              <button type="button"
+              className={styles.button}>Edit</button>
+            </a></Link>
           </td>
         </tr>
       )
