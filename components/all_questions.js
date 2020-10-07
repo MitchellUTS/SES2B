@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styles from './all_questions.module.css';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { timingSafeEqual } from 'crypto';
 const axios = require('axios').default;
 
@@ -36,13 +36,6 @@ class All_questions extends Component {
     e.target.style.background = '#333';
   }
 
-  onHandleEdit = (qid) => {
-    this.context.router.push({
-      pathname: "/modify",
-      state: { QuestionID: qid}
-    })
-  }
-
   onHandleDelete = id => {
     axios.delete('/api/questions/' + id)
     .then(response => {
@@ -68,16 +61,16 @@ class All_questions extends Component {
     const contents = this.state.questions.map((item) => {
       return( 
         <tr key={item._id}>
-          <td>{item._id}</td>
           <td>{item.question}</td>
           <td>
             <button type="button"
               className={styles.button}>Detail</button>
             &nbsp;&nbsp;&nbsp;
-            <Link href = "/modify"><a>
-              <button onClick={ () => this.onHandleEdit(item._id)}>className={styles.button}>Edit</button>
-               </a></Link>
-            &nbsp;&nbsp;&nbsp;    
+            <a href = "/modify">
+              <button type="button" 
+              className={styles.button}>Edit</button>
+               </a>
+            &nbsp;&nbsp;&nbsp;      
             <button type="button" 
               onClick={ () => this.onHandleDelete(item._id)}
               onMouseOver={this.deleteBackground}
@@ -94,7 +87,6 @@ class All_questions extends Component {
             <table className={styles.table}>
               <thead>  
                 <tr>
-                  <th>ID</th>
                   <th>Questions</th>
                   <th>Options</th>
                 </tr>

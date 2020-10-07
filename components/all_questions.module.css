@@ -6,6 +6,7 @@
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    display: inline-block;
     margin-left: 10px;
 }
 
