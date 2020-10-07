@@ -6,56 +6,89 @@ class CreateTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ""};
+            value: '',
+            id: '',
+            name: '',
+            description: '',
+        };
+
         this.handleChange = this.handleChange.bind(this);
-         
+        this.handleChangeText = this.handleChangeText.bind(this);
+        this.onHandleCreate = this.onHandleCreate.bind(this);     
     }
+
     handleChange(event) {
         this.setState({value: event.target.value});
     }
+
+    handleChangeText(e, field) {
+        this.setState({
+          [field]: e.target.value
+        });
+      }
+
+    onHandleCreate(e){
+        console.log(this.state.id);
+        e.preventDefault();
+        if(this.state.name === ""){
+            alert("Please fill in the fields!")
+        } else {
+            axios.post("/api/tests/" , {
+                name: this.state.name,
+                // description: this.state.description,
+              })
+                .then(function (response) {
+                  const countid = response.data.length;
+                  console.log(response.data); 
+                }
+                )
+                .catch(function (error) {
+                  console.log(error);
+                });
+                
+              this.setState({
+                name: '',
+                description: '',
+              });
+              alert("Test has successfully been created!")
+        }
+      } 
+
     render() {
         return (
             <div className={"CreateTest", styles.container}>
-                <form>
-                    <h3>
-                        Test ID:
-                        <input type="text"
-                        name="ID" 
-                        value={this.state.ID} 
-                        onChange={this.handleChange}/>
-                   </h3>
-                   <h3>
-                        Test Name:
-                        <input type="text" 
-                        name="Name"
-                        value={this.state.Name} 
-                        onChange={this.handleChange}/>
-                    </h3>
+                <form onSubmit={this.onHandleCreate}>
+                    <div>
+                        <h3>Test Name</h3>
+                                <input type="text" 
+                                className={styles.text}
+                                name="Name"
+                                value={this.state.Name} 
+                                onChange={e => this.handleChangeText(e, "name")}/>
+                        </div>
+
+                        <h3>Test Subject</h3>
+                        <select>
+                            <option selected value> Arithmetic </option>
+                            <option> Algebra </option>
+                            <option> Geometry </option> 
+                            <option> Trigonometry </option>
+                        </select>
+
+                        <h3>Test Description</h3>
+                        <textarea 
+                        value={this.state.textAreaValue}
+                        className={styles.textarea}
+                        onChange={e => this.handleChangeText(e, "description")}
+                        rows={5}
+                        cols={80}> 
+                            this test will have x number questions 
+                        </textarea>
+                        <div>
+                            <br/>   
+                            <button className={styles.button}>Submit</button>
+                    </div> 
                 </form>
-            
-                <h3>Test Subject:
-
-                <select>
-                    <option selected value> Arithmetic </option>
-                    <option> Algebra </option>
-                    <option> Geometry </option> 
-                    <option> Trigonometry </option>
-                </select>
-                </h3>
-
-                <h3>Test Description:</h3>
-                <textarea 
-                value={this.state.textAreaValue}
-                onChange={this.handleChange}
-                rows={5}
-                cols={80}> 
-                    this test will have x number questions 
-                </textarea>
-
-                <div>
-                <button>SUBMIT</button>
-                </div> 
-            
             </div>
         );
     }

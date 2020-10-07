@@ -117,7 +117,14 @@ class SelectTests extends Component {
           </div>
         </div>
         <div>
-        <button><a href="createtest">Create Test</a></button>
+          <br/>
+          <a href="/createtest">
+          <button
+          className={styles.button}
+          >
+              Create Test
+          </button>
+              </a>
         </div>
       </div>
     );
