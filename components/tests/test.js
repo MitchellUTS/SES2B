@@ -56,6 +56,12 @@ class Test extends Component {
   }
 
   componentDidMount() {
+    const errHandling = (error) =>{
+      console.log(error);
+      this.loadTest();
+    }
+    errHandling.bind(this);
+
     axios.get("/api/tests/" + this.state.quizID)
     .then(response => {
       this.setState({ 
@@ -65,10 +71,7 @@ class Test extends Component {
       console.log(this.state.questions);
       this.loadTest();
     })
-    .catch(function (error){
-      console.log(error);
-      this.loadTest();
-    })
+    .catch(errHandling)
   }
 
   checkAnswer = (answer) => {
