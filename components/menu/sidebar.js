@@ -9,7 +9,6 @@ const Sidebar = props => {
           <li><a href="list">Questions</a></li>
           <li><a href="create">Create</a></li>
           <li><a href="modify">Modify</a></li>
-          <li><a href="results">Results</a></li>
         </ul>
       </div>
     </div>
