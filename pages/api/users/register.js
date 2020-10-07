@@ -15,27 +15,26 @@ export default async function users(req, res) {
         res.writeHead(302, { Location: '/', });
         res.end();
 
-        let email = session.user.email;
-        let userName = session.user.nickname;
-        let userSub = session.user.sub;
         let userType = 'student';
-        console.log(session.user.sub);
-        
+   
+        let user = await db.User.findOne(
+            {
+                sub: userSub
+            }            
+        )
 
-        if(!db.User.findOne({sub: session.user.sub})){
+        if(!user){
             let user = new db.User({
-                sub: userSub,
-                email: email,
-                userName: userName,
-                userType: userType
-            });
-                user = await user.save();
-                // res.status(201).json(user);
-                console.log(user);
-            
+                        sub: session.user.sub,
+                        email: session.user.name,
+                        userName: session.user.nickname,
+                        userType: userType
+                    });
+                        user = await user.save();
         }
         
     } catch (err) {
-        res.status(500).end("Internal Server Error: " + err);
+        // res.status(500).end("Internal Server Error: " + err);
+        console.error("Res error:", err);
     } 
 }
