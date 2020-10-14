@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import styles from './test.module.css';
-import testData from './testData';
 import Link from 'next/link';
 
 const axios = require('axios').default;
@@ -9,7 +8,6 @@ const axios = require('axios').default;
 class Test extends Component {
   
   constructor(props) {
-    console.log(props);
     super(props);
 
     this.state = {
@@ -19,7 +17,7 @@ class Test extends Component {
       testEnd: false,
       score: 0,
       disabled: true,
-      questions: testData,
+      questions: [],
       quizID: props.id,
       failedToLoadData: false
     }
@@ -32,6 +30,10 @@ class Test extends Component {
   loadTest = () => {
     const {currentIndex} = this.state;
     const {questions} = this.state; 
+    if (questions.length == 0) {
+      alert("Error, empty test.");
+      return {};
+    }
     this.setState(() => {
       return {
         question: questions[currentIndex].question,
@@ -71,7 +73,7 @@ class Test extends Component {
         tests: response.data
       });
       this.setState({questions: response.data.questions});
-      console.log(this.state.questions);
+      // console.log(this.state.questions);
       this.loadTest();
     })
     .catch(errHandling)
