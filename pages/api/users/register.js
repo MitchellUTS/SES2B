@@ -1,4 +1,6 @@
+// import { Db } from 'mongodb';
 import auth0 from '../../../lib/auth0';
+import db from '../../../lib/database';
 
 export default async function users(req, res) {
     try {
@@ -13,37 +15,26 @@ export default async function users(req, res) {
         res.writeHead(302, { Location: '/', });
         res.end();
 
-        
-        let userName = session.user.nickname;
-        let userSub = session.user.sub;
-        let userType = 'user';
-        console.log(session.user.sub);
+        let userType = 'student';
+   
+        let user = await db.User.findOne(
+            {
+                sub: session.user.sub
+            }            
+        )
 
-
-        // if (userExists) {
-        //     updateName();
-        // } else {
-        //     createUser();
-        // }
-
-        // let users = await table("SES2B", "users");
-        // users.find({sub: session.user.sub}).toArray(function(err, results) {
-        //     if (err) throw err;
-        //     if (results.length == 0) {
-        //         users.insert({sub: session.user.sub, usertype: 'user'}, function(err, result) {
-        //             if (err) {
-        //                 throw err;
-        //             } else {
-        //                 console.log(result);
-        //             }
-        //         });
-        //     } else {
-        //         console.log(results[0]);
-        //     }
-        // });
-
+        if(!user){
+            let user = new db.User({
+                sub: session.user.sub,
+                email: session.user.name,
+                userName: session.user.nickname,
+                userType: userType
+            });
+                user = await user.save();
+        }
         
     } catch (err) {
-        res.status(500).end("Internal Server Error: " + err);
+        // res.status(500).end("Internal Server Error: " + err);
+        console.error("Res error:", err);
     } 
 }
