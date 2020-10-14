@@ -65,7 +65,7 @@ class All_questions extends Component {
             <button type="button"
               className={styles.button} onClick={(e) => {
                 e.preventDefault();
-                window.location.href='./list/' + item._id
+                window.location.href='./admin/' + item._id
               }}>Detail</button>
             &nbsp;&nbsp;&nbsp;  
             <button type="button" 
