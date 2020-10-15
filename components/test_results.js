@@ -32,8 +32,8 @@ class All_questions extends Component {
       return(
         <tr key={item._id}>
           <td>{item._id}</td>
-          <td>{item.userID}</td>
-          <td>{item.testID}</td>
+          <td>{item.username}</td>
+          <td>{item.testName}</td>
           <td>{item.testResult}</td>
         </tr>
       )
@@ -46,7 +46,7 @@ class All_questions extends Component {
               <thead>  
                 <tr>
                   <th>ID</th>
-                  <th>User (ID)</th>
+                  <th>User</th>
                   <th>Test</th>
                   <th>Test Result (Level)</th>
                 </tr>
