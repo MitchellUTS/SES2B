@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import styles from './test.module.css';
 import resultStyles from './results.module.css';
-import testData from './testData';
 import Link from 'next/link';
 
 const axios = require('axios').default;
@@ -140,7 +139,15 @@ class Test extends Component {
     // console.log(this.state);
     const{question, options, currentIndex, userAnswer, testEnd, viewAnswer} = this.state
     const { failedToLoadData } = this.state;
-
+    
+    if (failedToLoadData) {
+      return (
+        <div>
+          <h1>Failed to load test. Please <Link href="/api/auth/login"><a>log in</a></Link> to continue</h1>
+        </div>
+      )
+    }
+    
     if (testEnd && !viewAnswer) {
       return (
         <div className={resultStyles.container}>
