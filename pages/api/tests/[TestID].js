@@ -20,6 +20,7 @@ export default async function get(req, res) {
                         $set:
                         {
                             name: req.body.name,
+                            numberOfQuestions: req.body.numberOfQuestions,
                             questions: req.body.questions
                         }
                     }
