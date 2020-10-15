@@ -1,6 +1,11 @@
 import db from '../../../lib/database';
+import authenicate from '../../../lib/auth';
 
-export default async function get(req, res) {
+export default function main(req, res) {
+    authenicate(req, res, getTestsAPI);
+}
+
+async function getTestsAPI(req, res) {
     try {
         switch (req.method) {
             case "GET":

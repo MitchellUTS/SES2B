@@ -13,8 +13,20 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>Select a Test</h1>
-        <Tests/>
+      {loading && <p>Loading login info...</p>}
+
+      {!loading && !user && (
+        <p>
+          <a href="/api/auth/login">Login</a> to view tests
+        </p>
+      )}
+
+      {user && (
+        <>
+          <h1>Select a Test</h1>
+          <Tests/>
+        </>
+      )}
     </Layout>
   )
 }

@@ -93,7 +93,7 @@ class SelectTests extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>Mock Test</td>
                   <td>
                     <button type="button"
@@ -110,7 +110,7 @@ class SelectTests extends Component {
                     <button type="button"
                     className={styles.button}>Edit</button>      
                   </td>
-                </tr>
+                </tr> */}
                 {contents}
               </tbody>
             </table>
