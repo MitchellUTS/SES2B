@@ -7,11 +7,10 @@ const Sidebar = props => {
     <div className="wrapper">
       <div className="sidebar">
         <ul>
-
-          <li><Link href="/tests"><a>Tests</a></Link></li>
-          <li><Link href="/list"><a>Admin</a></Link></li>
-          <li><Link href="/create"><a>Create</a></Link></li>
-          <li><Link href="/modify"><a>Modify</a></Link></li>
+          <li><a href="tests">Tests</a></li>
+          <li><a href="admin">Admin</a></li>
+          <li><a href="create">Create</a></li>
+          <li><a href="modify">Modify</a></li>
         </ul>
       </div>
     </div>
