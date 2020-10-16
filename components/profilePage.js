@@ -11,6 +11,7 @@ class ProfilePage extends Component {
       loading: true,
       isOpen: false,
       results: [],
+      userResults: [],
       tests: []
     }
     this.handleClick = this.handleClick.bind(this);
