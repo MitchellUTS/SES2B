@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styles from './test.module.css';
+import resultStyles from './results.module.css'
 import Link from 'next/link';
 
 const axios = require('axios').default;
@@ -19,7 +20,8 @@ class Test extends Component {
       disabled: true,
       questions: [],
       quizID: props.id,
-      failedToLoadData: false
+      failedToLoadData: false,
+      viewAnswer: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -124,9 +126,18 @@ class Test extends Component {
     }
   }
 
+  viewAnswerHandler = () => {
+    if (!this.state.viewAnswer) {
+      this.setState({ viewAnswer: true })
+    }
+    else {
+      this.setState({ viewAnswer: false })
+    }
+  }
+
   render() {
     // console.log(this.state);
-    const{question, options, currentIndex, userAnswer, testEnd} = this.state
+    const{question, options, currentIndex, userAnswer, testEnd, viewAnswer} = this.state
     const { failedToLoadData } = this.state;
 
     if (failedToLoadData) {
@@ -137,15 +148,33 @@ class Test extends Component {
       )
     }
 
-    if (testEnd) {
+    if (testEnd && !viewAnswer) {
       return (
-        <div>
-          <h1>Your Final Score is {this.state.score}</h1>
-          <p>The correct answers are:</p>
+        <div className={resultStyles.container}>
+               <div className={resultStyles.aligntext}>
+                    <h1>Final Results</h1>
+                   <h2>{this.state.score} / {this.state.questions.length}</h2>
+              </div>
+              <div className={resultStyles.center}>
+                  <button className={resultStyles.button}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='./tests'
+                  }}>Begin New Test</button>
+                <button className={resultStyles.button} onClick={this.viewAnswerHandler}>View Answers</button>
+            </div>
+        </div>
+      )
+    }
+
+    if (viewAnswer) {
+      return (
+        <div className={resultStyles.container}>
+          <h1>Correct Answers</h1>
           <ul className={styles.ul}>
             {this.state.questions.map((item, index) => (
               <li
-              key={index}>
+                key={index}>
                 Question {index + 1}.&nbsp;&nbsp;&nbsp; {item.question}
                 <br></br>
                 <br></br>
@@ -156,14 +185,7 @@ class Test extends Component {
               </li>
             ))}
           </ul>
-          <button 
-          className = {styles.button}
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href='./tests'
-          }}>
-            Return to Tests 
-          </button>
+          <button className={styles.button} onClick={this.viewAnswerHandler}>Back</button>
         </div>
       )
     }
