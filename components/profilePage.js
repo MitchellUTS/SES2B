@@ -10,10 +10,24 @@ class ProfilePage extends Component {
       user: null,
       loading: true,
       isOpen: false,
+      results: [],
+      tests: []
     }
     this.handleClick = this.handleClick.bind(this);
 
     fetchUser().then(this.setUser.bind(this)).catch(console.error);
+  }
+
+  componentDidMount() {
+    axios.get("/api/userTests")
+    .then(response => {
+      this.setState({ 
+        results: response.data
+      });
+    })
+    .catch(function (error){
+      console.log(error);
+    })
   }
 
   setUser(user) {
