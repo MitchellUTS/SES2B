@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>SES 2B Questionnaire</h1>
+      <h1>Profile Page</h1>
 
       {loading && <p>Loading login info...</p>}
 

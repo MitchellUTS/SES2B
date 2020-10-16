@@ -1,7 +1,12 @@
 import { Component } from 'react';
 import Link from 'next/link';
 import { useFetchUser, fetchUser } from '../lib/user'
-import styles from './profile.module.css';
+// import styles from './profile.module.css';
+import resultStyles from './all_questions.module.css';
+import styles from './profilePage.module.css';
+
+
+const axios = require('axios').default;
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -29,6 +34,15 @@ class ProfilePage extends Component {
     .catch(function (error){
       console.log(error);
     })
+  }
+
+  getUserResults() {
+    var i;
+    for (i = 0; i < this.state.results.length; i++) {
+      if (this.state.results[i].userID === this.state.user._id) {
+        userResults.push(this.state.results[i]);
+      }
+    }
   }
 
   setUser(user) {
@@ -72,12 +86,45 @@ class ProfilePage extends Component {
   }
 
   render() {
-    // console.log(this.state);
+    console.log(this.state.results);
+    console.log(this.state.userResults);
+
+    this.getUserResults();
+
+    const contents = this.state.userResults.map((item) => {
+      return(
+        <tr key={item._id}>
+          <td>{item._id}</td>
+          <td>{item.username}</td>
+          <td>{item.testName}</td>
+          <td>{item.testResult}</td>
+        </tr>
+      )
+    })
+
     return (
-      <div>
-        <img src={ this.getUserPicture() }></img>
-        <p>Name: { this.getUsername() }</p>
-        <p>Email: { this.getEmail() }</p>
+      <div className={styles.container}>
+        <div className={styles.itemLeft}>
+          <img src={ this.getUserPicture() } className={styles.image}></img>
+          <p>Name: { this.getUsername() }</p>
+          <p>Email: { this.getEmail() }</p>
+        </div>
+        <div className={styles.itemRight}>
+          <h2>Previous Test Results</h2>
+          <table className={styles.table}>
+            <thead>  
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Test</th>
+                <th>Test Result (Level)</th>
+              </tr>
+            </thead>
+            <tbody>
+             {contents}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   };
