@@ -13,50 +13,59 @@ export class QuestionForm extends Component {
     }
     if (e.target.name === "answer") {
       newQuestion.answer = e.target.value;
-      this.props.updateQuestion(this, newQuestion);
+      this.props.updateQuestion(newQuestion);
     }
     if (e.target.name === "level") {
       newQuestion.level = e.target.value;
-      this.props.updateQuestion(this, newQuestion);
+      this.props.updateQuestion(newQuestion);
     }
+  };
+
+  delete = (e) => {
+    e.preventDefault();
+    this.props.delete(this.props.question);
   };
 
   render() {
     return (
       <div>
         <p>
-            <label>
-              Question:{" "}
-              <input
-                style={{ width: "370px" }}
-                type="text"
-                name="question"
-                value={this.props.question.question}
-                onChange={this.onChange}
-              />
-            </label>
-            <br />
-            <label>
-              Answer:{" "}
-              <input
-                style={{ width: "370px" }}
-                type="text"
-                name="answer"
-                value={this.props.question.answer}
-                onChange={this.onChange}
-              />
-            </label>
-            <br />
-            <label>
-              level:{" "}
-              <input
-                style={{ width: "370px" }}
-                type="number"
-                name="level"
-                value={this.props.question.level}
-                onChange={this.onChange}
-              />
-            </label>
+          <label>
+            Question:{" "}
+            <input
+              style={{ width: "370px" }}
+              type="text"
+              name="question"
+              value={this.props.question.question}
+              onChange={this.onChange}
+            />
+          </label>
+          <br />
+          <label>
+            Answer:{" "}
+            <input
+              style={{ width: "370px" }}
+              type="text"
+              name="answer"
+              value={this.props.question.answer}
+              onChange={this.onChange}
+            />
+          </label>
+          <br />
+          <label>
+            level:{" "}
+            <input
+              style={{ width: "370px" }}
+              type="number"
+              name="level"
+              value={this.props.question.level}
+              onChange={this.onChange}
+            />
+          </label>
+          <br />
+          <button style={{ backgroundColor: "#FF2D00" }} onClick={this.delete}>
+            Delete
+          </button>
         </p>
       </div>
     );

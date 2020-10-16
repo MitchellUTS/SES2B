@@ -1,6 +1,7 @@
 import { Component } from "react";
 import styles from "./details.module.css";
 import QuestionsForm from "./QuestionsForm";
+import { v4 as uuidv4 } from "uuid";
 
 const axios = require("axios").default;
 
@@ -9,7 +10,6 @@ class All_questions extends Component {
     super(props);
 
     this.state = {
-      testID: props.id,
       results: {
         numberOfQuestions: 0,
         _id: "",
@@ -21,9 +21,8 @@ class All_questions extends Component {
 
   componentDidMount() {
     axios
-      .get("/api/tests/" + this.state.testID)
+      .get("/api/tests/" + this.props.id)
       .then((response) => {
-        console.log("responded!!!!");
         this.setState({
           results: response.data,
         });
@@ -56,22 +55,47 @@ class All_questions extends Component {
 
   updateTest = () => {
     axios
-      .put("/api/tests/" + this.state.testID, {
-        name: this.state.results.name,
-        numberOfQuestions: this.state.results.numberOfQuestions,
-        questions: this.state.results.questions,
-      })
+      .put("/api/tests/" + this.props.id, this.state.results)
       .then((response) => {
-        console.log("Success?");
+        axios
+          .get("/api/tests/" + this.props.id)
+          .then((response) => {
+            this.setState({
+              results: response.data,
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
+  deleteQuestion = (q) => {
+    const newState = this.state;
+    newState.results.questions = this.state.results.questions.filter(
+      (question) => question !== q
+    );
+    this.setState(newState);
+  };
+
+  addNewQuestion = (e) => {
+    e.preventDefault();
+    const newState = this.state;
+    newState.results.questions = [
+      {
+        question: "",
+        answer: "",
+        level: 1,
+      },
+      ...newState.results.questions,
+    ];
+    this.updateTest();
+  };
+
   render() {
-    const testID = this.state.testID;
-    const results = this.state.results.name;
     return (
       <div className={styles.input}>
         <h1>
@@ -103,9 +127,16 @@ class All_questions extends Component {
             </label>
           </div>
           <h2>Pool of Questions:</h2>
+          <button
+            style={{ backgroundColor: "#00FF00" }}
+            onClick={this.addNewQuestion}
+          >
+            Add new Question
+          </button>
           <QuestionsForm
             questions={this.state.results.questions}
             updateQuestion={this.updateQuestion}
+            delete={this.deleteQuestion}
           />
           <input type="submit" value="Save" onClick={this.updateTest} />
         </form>
