@@ -1,6 +1,7 @@
 import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
 import Profile from '../components/profile'
+import ProfilePage from '../components/profilePage'
 
 const meta = {
   title: "Profile",
@@ -24,15 +25,7 @@ function Home() {
       )}
 
       {user && (
-        <>
-          <p>Name: {user.name}</p>
-          <p>Nickname: {user.nickname}</p>
-          <p>
-            Profile Picture (100x100):
-            <img src={user.picture} alt="user picture" width="100" height="100"/>
-          </p>
-          <p>Raw User Data: {JSON.stringify(user)}</p>
-        </>
+        <ProfilePage user={user} loading={loading} />
       )}
     </Layout>
   )
