@@ -1,7 +1,6 @@
 import { Component } from "react";
 import styles from "./details.module.css";
 import QuestionsForm from "./QuestionsForm";
-import { v4 as uuidv4 } from "uuid";
 
 const axios = require("axios").default;
 
@@ -57,6 +56,7 @@ class All_questions extends Component {
     axios
       .put("/api/tests/" + this.props.id, this.state.results)
       .then((response) => {
+        console.log(response);
         axios
           .get("/api/tests/" + this.props.id)
           .then((response) => {

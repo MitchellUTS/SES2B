@@ -37,6 +37,7 @@ class All_questions extends Component {
     axios
       .delete("/api/tests/" + id)
       .then((response) => {
+        console.log(response);
         axios
           .get("/api/tests")
           .then((response) => {
@@ -68,7 +69,6 @@ class All_questions extends Component {
   };
 
   render() {
-    // console.log(this.state);
     const contents = this.state.questions.map((item) => {
       return (
         <tr key={item._id}>
