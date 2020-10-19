@@ -77,7 +77,7 @@ export class userTest extends Component {
           <input
             className={styles.text}
             type="text"
-            value={this.state.userAnswer}
+            value={this.state.question.answer}
             onChange={(e) => this.handleChange(e)}
           />
           <br />
@@ -106,7 +106,7 @@ export class userTest extends Component {
     return (
       <div className={resultStyles.container}>
         <div className={resultStyles.aligntext}>
-          <h1>Final Results</h1>
+          <h1>Test Result</h1>
           <h2>Level {this.state.result.testResult}</h2>
         </div>
         <div className={resultStyles.center}>
