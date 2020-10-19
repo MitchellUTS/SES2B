@@ -40,7 +40,7 @@ class All_questions extends Component {
           <td>{item._id}</td>
           <td>{item.username}</td>
           <td>{item.testName}</td>
-          <td>{item.testResult}</td>
+          <td>{item.complete ? item.testResult : "Pending"}</td>
           <td>{item.complete ? "Complete" : "In Progress"}</td>
         </tr>
       );
