@@ -113,6 +113,7 @@ class All_questions extends Component {
               </thead>
               <tbody>{contents}</tbody>
             </table>
+            <br/>
             <button className={styles.button} onClick={this.createNewTest}>
               Add New Test
             </button>

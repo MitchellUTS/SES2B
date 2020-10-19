@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./details.module.css";
 import PropTypes from "prop-types";
 
 export class QuestionForm extends Component {
@@ -21,6 +22,14 @@ export class QuestionForm extends Component {
     }
   };
 
+  deleteBackground(e) {
+    e.target.style.background = "red";
+  }
+
+  defaultBackground(e) {
+    e.target.style.background = "#333";
+  }
+
   delete = (e) => {
     e.preventDefault();
     this.props.delete(this.props.question);
@@ -31,9 +40,10 @@ export class QuestionForm extends Component {
       <div>
         <p>
           <label>
-            Question:{" "}
+            Question{" "}
             <input
-              style={{ width: "370px" }}
+              // style={{ width: "370px" }}
+              className={styles.text}
               type="text"
               name="question"
               value={this.props.question.question}
@@ -42,9 +52,10 @@ export class QuestionForm extends Component {
           </label>
           <br />
           <label>
-            Answer:{" "}
+            Answer{" "}
             <input
-              style={{ width: "370px" }}
+              // style={{ width: "370px" }}
+              className={styles.text}
               type="text"
               name="answer"
               value={this.props.question.answer}
@@ -53,9 +64,10 @@ export class QuestionForm extends Component {
           </label>
           <br />
           <label>
-            level:{" "}
+            Level{" "}
             <input
-              style={{ width: "370px" }}
+              // style={{ width: "370px" }}
+              className={styles.text}
               type="number"
               name="level"
               value={this.props.question.level}
@@ -63,7 +75,13 @@ export class QuestionForm extends Component {
             />
           </label>
           <br />
-          <button style={{ backgroundColor: "#FF2D00" }} onClick={this.delete}>
+          <br />
+          <button 
+          onClick={this.delete}
+          className={styles.button}
+          onMouseOver={this.deleteBackground}
+          onMouseLeave={this.defaultBackground}
+          >
             Delete
           </button>
         </p>

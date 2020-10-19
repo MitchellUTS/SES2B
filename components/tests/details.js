@@ -42,6 +42,18 @@ class All_questions extends Component {
     this.setState(newState);
   };
 
+  addBackground(e) {
+    e.target.style.background = "green";
+  }
+
+  deleteBackground(e) {
+    e.target.style.background = "red";
+  }
+
+  defaultBackground(e) {
+    e.target.style.background = "#333";
+  }
+
   updateQuestion = (newQuestion) => {
     const newState = this.state;
     for (let i = 0; i < newState.results.questions.length; i++) {
@@ -109,6 +121,7 @@ class All_questions extends Component {
                 style={{ width: "370px" }}
                 type="text"
                 name="name"
+                className={styles.text}
                 value={this.state.results.name}
                 onChange={this.onChange}
               />
@@ -121,6 +134,7 @@ class All_questions extends Component {
                 style={{ width: "370px" }}
                 type="number"
                 name="numberOfQuestions"
+                className={styles.text}
                 value={this.state.results.numberOfQuestions}
                 onChange={this.onChange}
               />
@@ -128,17 +142,25 @@ class All_questions extends Component {
           </div>
           <h2>Pool of Questions:</h2>
           <button
-            style={{ backgroundColor: "#00FF00" }}
+            className = {styles.button}
             onClick={this.addNewQuestion}
+            onMouseOver={this.addBackground}
+            onMouseLeave={this.defaultBackground}
           >
-            Add new Question
+            Add New Question +
           </button>
           <QuestionsForm
             questions={this.state.results.questions}
             updateQuestion={this.updateQuestion}
             delete={this.deleteQuestion}
           />
-          <input type="submit" value="Save" onClick={this.updateTest} />
+          {/* { this.state.numberOfQuestions != null && */}
+          <input 
+          type="submit" 
+          value="Save" 
+          className = {styles.button}
+          onClick={this.updateTest} />
+          {/* } */}
         </form>
       </div>
     );
