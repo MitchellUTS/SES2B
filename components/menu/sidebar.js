@@ -64,6 +64,13 @@ const Sidebar = props => {
         .wrapper .sidebar ul li:hover a{
           color: #fff;
         }
+
+        @media only screen and (max-width: 1080px) {
+          .wrapper .sidebar{
+            width: 0px;
+            float: right;
+          }
+        }
         `}</style>
       </>
   )
