@@ -23,7 +23,10 @@ function Home() {
 
       {user && (
         <>
-          <h1>Select a Test</h1>
+          <h1>Privacy preserving adaptive testing system</h1>
+          <h2>Welcome {user.nickname}</h2>
+          <br/>
+          <h2>Test List</h2>
           <Tests/>
         </>
       )}

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import styles from './test.module.css';
 import resultStyles from './results.module.css'
 import Link from 'next/link';
+import { useFetchUser } from '../../lib/user'
 
 const axios = require('axios').default;
 

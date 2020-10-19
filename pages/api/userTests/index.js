@@ -20,6 +20,7 @@ export default async function get(req, res) {
               username: user.userName ? user.userName : user.sub,
               testName: test.name ? test.name : test._id,
               testResult: usertests[i].testResult,
+              complete: usertests[i].complete
             });
           }
         }
@@ -31,12 +32,7 @@ export default async function get(req, res) {
         res.status(201).json(userTest);
         break;
       case "DELETE":
-        await db.Test.deleteMany({
-          _id: req.body._id,
-          userID: req.body.userID,
-          testID: req.body.testID,
-          testResult: req.body.testResult,
-        });
+        await db.UserTest.deleteMany();
         res.status(204).end();
         break;
       default:

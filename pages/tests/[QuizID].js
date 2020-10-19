@@ -2,6 +2,7 @@ import Layout from '../../components/layout'
 import { useFetchUser } from '../../lib/user'
 import Test from '../../components/tests/test'
 import { useRouter } from 'next/router'
+import UserTest from '../../components/tests/userTest'
 
 const meta = {
   title: "Test",
@@ -25,7 +26,8 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <Test id={QuizID}/>
+      {/* <Test id={QuizID}/> */}
+      <UserTest/>
     </Layout>
   )
 }

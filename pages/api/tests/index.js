@@ -13,9 +13,7 @@ export default async function get(req, res) {
         res.status(201).json(test);
         break;
       case "DELETE":
-        await db.Test.deleteMany({
-          _id: req.body._id,
-        });
+        await db.Test.deleteMany();
         res.status(204).end();
         break;
       default:
