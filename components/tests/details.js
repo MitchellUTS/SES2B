@@ -109,14 +109,14 @@ class All_questions extends Component {
 
   render() {
     return (
-      <div className={styles.input}>
+      <div className={styles.container}>
         <h1>
           {this.state.results.name} ({this.state.results._id})
         </h1>
         <form>
           <div>
             <label>
-              <h2>Name:</h2>
+              <h2>Name</h2>
               <input
                 style={{ width: "370px" }}
                 type="text"
@@ -129,7 +129,7 @@ class All_questions extends Component {
           </div>
           <div>
             <label>
-              <h2>Number of Questions:</h2>
+              <h2>Number of Questions</h2>
               <input
                 style={{ width: "370px" }}
                 type="number"
@@ -140,7 +140,7 @@ class All_questions extends Component {
               />
             </label>
           </div>
-          <h2>Pool of Questions:</h2>
+          <h2>Pool of Questions</h2>
           <button
             className = {styles.button}
             onClick={this.addNewQuestion}
@@ -154,13 +154,15 @@ class All_questions extends Component {
             updateQuestion={this.updateQuestion}
             delete={this.deleteQuestion}
           />
-          {/* { this.state.numberOfQuestions != null && */}
+          <br />
+          <br />
+          { this.state.numberOfQuestions !== 0 &&
           <input 
           type="submit" 
           value="Save" 
           className = {styles.button}
           onClick={this.updateTest} />
-          {/* } */}
+          }
         </form>
       </div>
     );

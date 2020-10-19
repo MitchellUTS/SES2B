@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>Privacy preserving adaptive testing system</h1>
+      <h1>Privacy Preserving Adaptive Testing System</h1>
 
       {loading && <p>Loading login info...</p>}
 

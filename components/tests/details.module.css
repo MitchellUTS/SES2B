@@ -9,6 +9,12 @@
     resize: vertical;
 }
 
+.container {
+    border-radius: 5px;
+    background-color: #72747252;
+    padding: 20px;
+}
+
 .button {
     background-color: #333;
     color: #fff;

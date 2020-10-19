@@ -23,6 +23,7 @@ const Sidebar = props => {
           box-sizing: border-box;
           list-style: none;
           text-decoration: none;
+          position: sticky;
         }
 
         body{
@@ -31,14 +32,15 @@ const Sidebar = props => {
 
         .wrapper{
           display: flex;
-          position: absolute;
+          position: sticky;
+          top: 0;
           height: 100%;
         }
 
         .wrapper .sidebar{
           position: absolute;
           float: left;
-          height: 100%;
+          height: 1350px;
           width: 200px;
           background: #222;
           padding: 0;
