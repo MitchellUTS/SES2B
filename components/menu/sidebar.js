@@ -40,7 +40,7 @@ const Sidebar = props => {
         .wrapper .sidebar{
           position: absolute;
           float: left;
-          height: 1350px;
+          height: calc(100vh);
           width: 200px;
           background: #222;
           padding: 0;
