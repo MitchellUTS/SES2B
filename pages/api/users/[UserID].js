@@ -3,7 +3,7 @@ import db from '../../../lib/database';
 export default async function get(req, res) {
     try {
         let filter = { sub: req.query };
-        let user = await db.User.findOne({sub: req.query}); // Throws a 500 error if the User ID is not in a valid format (appears to be 25 hex characters)
+        let user = await db.User.findOne({sub: req.query.UserID}); // Throws a 500 error if the User ID is not in a valid format (appears to be 25 hex characters)
 
         if (user == null) {
             res.status(404).json({ error: { code: 404, message: "Resource Not Found" } });

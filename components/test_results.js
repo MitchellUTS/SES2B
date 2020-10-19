@@ -17,6 +17,10 @@ class All_questions extends Component {
   componentDidMount() {
     axios.get("/api/userTests")
     .then(response => {
+      const results = response.data;
+      if(this.props.user !== null) {
+        results.filter(result => result.username === this.props.user.username)
+      }
       this.setState({ 
         results: response.data
       });

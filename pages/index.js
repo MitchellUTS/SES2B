@@ -1,5 +1,7 @@
 import Layout from '../components/layout'
 import { useFetchUser } from '../lib/user'
+import Tests from '../components/tests/selectTests'
+import TestResults from '../components/test_results'
 
 const meta = {
   title: "Home",
@@ -12,7 +14,7 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>SES 2B Questionnaire</h1>
+      <h1>Privacy preserving adaptive testing system</h1>
 
       {loading && <p>Loading login info...</p>}
 
@@ -24,7 +26,12 @@ function Home() {
 
       {user && (
         <>
-          <p>You are logged in.</p>
+          <h2>Welcome {user.nickname}</h2>
+          <br/>
+          <h2>Test List</h2>
+          <Tests user={user}/>
+          <h2>Test History</h2>
+          <TestResults user={user}/>
         </>
       )}
     </Layout>

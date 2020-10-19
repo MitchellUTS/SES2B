@@ -14,10 +14,11 @@ function Home() {
 
   return (
     <Layout user={user} loading={loading} meta={meta}>
-      <h1>List of all Tests</h1>
+      <h1>Admin</h1>
+      <h2>Tests</h2>
         <Qlist/>
-      <h1>Test Results</h1>
-        <TestResults/>
+      <h2>Test Results</h2>
+        <TestResults user={null}/>
     </Layout>
   )
 }

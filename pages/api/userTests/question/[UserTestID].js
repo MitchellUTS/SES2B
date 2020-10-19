@@ -12,13 +12,13 @@ export default async function get(req, res) {
                         _id: req.query.UserTestID
                     }
                 );
-                console.log(userTest);
+                // console.log(userTest);
                 test = await db.Test.findOne(
                     {
                         _id: userTest.testID
                     }
                 );
-                console.log(test);
+                // console.log(test);
                 if(userTest.numOfQuestionsAnswered === test.numberOfQuestions) {
                     res.status(200).json("Test is complete, no more questions");
                 }
@@ -26,7 +26,7 @@ export default async function get(req, res) {
                     return question.level == userTest.testResult;
                 });
                 if(!(Array.isArray(questionsOfTestLevel) && questionsOfTestLevel.length)) {
-                    res.status(200).json("This user is too good, I have no more questions for them");
+                    res.status(200).json("Test is complete, no more questions");
                 } else {
                     var randomQuestion = questionsOfTestLevel[Math.floor(Math.random() * questionsOfTestLevel.length)];
                     res.status(200).json({

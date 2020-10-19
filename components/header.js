@@ -8,7 +8,7 @@ function Header({ user, loading }) {
         <ul>
           <li>
             <Link href="/">
-              <a>Home</a>
+              <a>PPATS</a>
             </Link>
           </li>
           <Profile/>
