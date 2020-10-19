@@ -2,7 +2,7 @@ import db from '../../../lib/database';
 
 export default async function get(req, res) {
     try {
-        let filter = { sub: req.query };
+        let filter = { sub: req.query.UserID };
         let user = await db.User.findOne({sub: req.query.UserID}); // Throws a 500 error if the User ID is not in a valid format (appears to be 25 hex characters)
 
         if (user == null) {
@@ -16,13 +16,13 @@ export default async function get(req, res) {
                 break;
 
             case "PUT":
-                let updatedResponse = await db.User.updateOne(filter, req.body);
+                let updatedResponse = await db.User.updateOne(filter, {$set:req.body});
 
                 // Check if anything was actually updated
                 if (updatedResponse.n != 1) {
                     res.status(400).json({ error: { code: 400, message: "Unable to update requested object." } })
                 } else {
-                    user = await db.User.findOne({ _id: req.query.UserID });
+                    user = await db.User.findOne({ sub: req.query.UserID });
                     res.status(200).json(user);
                 }                
                 break;

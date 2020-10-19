@@ -20,12 +20,35 @@ export default async function get(req, res) {
                 );
                 // console.log(test);
                 if(userTest.numOfQuestionsAnswered === test.numberOfQuestions) {
+                    await db.UserTest.updateOne(
+                        {
+                            _id: req.query.UserTestID
+                        },
+                        {
+                            $set:
+                            {
+                                complete: true
+                            }
+                        }
+                    )
                     res.status(200).json("Test is complete, no more questions");
+                    break;
                 }
                 let questionsOfTestLevel = test.questions.filter(function(question) {
                     return question.level == userTest.testResult;
                 });
                 if(!(Array.isArray(questionsOfTestLevel) && questionsOfTestLevel.length)) {
+                    await db.UserTest.updateOne(
+                        {
+                            _id: req.query.UserTestID
+                        },
+                        {
+                            $set:
+                            {
+                                complete: true
+                            }
+                        }
+                    )
                     res.status(200).json("Test is complete, no more questions");
                 } else {
                     var randomQuestion = questionsOfTestLevel[Math.floor(Math.random() * questionsOfTestLevel.length)];

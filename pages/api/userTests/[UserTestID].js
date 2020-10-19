@@ -21,14 +21,15 @@ export default async function get(req, res) {
                         {
                             userID: req.body.userID,
                             testID: req.body.testID,
-                            testResult: req.body.testResult
+                            testResult: req.body.testResult,
+                            complete: req.body.complete
                         }
                     }
                 );
                 res.status(200).json(updatedUserTest);
                 break;
             case "DELETE":
-                await db.Test.deleteMany(
+                await db.UserTest.deleteMany(
                     {
                         _id: req.query.UserTestID
                     }

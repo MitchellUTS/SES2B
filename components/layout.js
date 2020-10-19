@@ -20,6 +20,7 @@ function validateMeta(meta) {
 function Layout({ user, loading = false, meta = {}, children }) {
 
   let valid_meta = validateMeta(meta);
+  console.log(user);
 
   return (
     <>
@@ -33,7 +34,7 @@ function Layout({ user, loading = false, meta = {}, children }) {
       </Head>
 
       <Header user={user} loading={loading} />
-      <Sidebar/>
+      <Sidebar user={user}/>
 
       <main>
         <div className="container">{children}</div>
