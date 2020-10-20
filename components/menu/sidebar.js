@@ -1,14 +1,35 @@
 import Link from 'next/link';
+import { useState } from 'react';
+const axios = require('axios').default;
 
 const Sidebar = ({ user, loading = false }) => {
-  console.log(user, loading);
+  const [admin, setAdmin] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  if (typeof window !== 'undefined') {
+    if (!loading && user) {
+      if (!isLoading && typeof admin.admin === 'undefined') {
+        axios.get("/api/users/" + user.sub)
+          .then(function (response) {
+            console.log(response.data);
+            setIsLoading(false);
+            setAdmin(response.data);
+          })
+          .catch(function (error) {
+            setIsLoading(false);
+            console.log(error);
+          });
+        setIsLoading(true);
+      }
+    } 
+  }
+
   return (
     <>
     <div className="wrapper">
       <div className="sidebar">
         <ul>
           <li><a href="/">Home</a></li>
-          {!loading && user && (
+          {(typeof window !== 'undefined') && admin.admin && (
             <li><a href="/admin">Admin</a></li>
           )}
           <li><a href="/profile">Profile</a></li>
