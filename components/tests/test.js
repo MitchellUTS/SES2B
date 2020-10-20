@@ -157,6 +157,8 @@ class Test extends Component {
                    <h2>{this.state.score} / {this.state.questions.length}</h2>
               </div>
               <div className={resultStyles.center}>
+                <br/>
+                <br/>
                   <button className={resultStyles.button}
                   onClick={(e) => {
                     e.preventDefault();

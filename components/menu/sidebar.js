@@ -68,7 +68,10 @@ const Sidebar = props => {
         @media only screen and (max-width: 1080px) {
           .wrapper .sidebar{
             width: 0px;
-            float: right;
+          }
+
+          .wrapper .sidebar ul li{
+            display: none;
           }
         }
         `}</style>
