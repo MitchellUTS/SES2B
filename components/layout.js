@@ -20,7 +20,6 @@ function validateMeta(meta) {
 function Layout({ user, loading = false, meta = {}, children }) {
 
   let valid_meta = validateMeta(meta);
-  console.log(user);
 
   return (
     <>
