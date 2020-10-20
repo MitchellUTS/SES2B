@@ -1,14 +1,16 @@
 import Link from 'next/link';
 
-const Sidebar = props => {
-  
+const Sidebar = ({ user, loading = false }) => {
+  console.log(user, loading);
   return (
     <>
     <div className="wrapper">
       <div className="sidebar">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/admin">Admin</a></li>
+          {!loading && user && (
+            <li><a href="/admin">Admin</a></li>
+          )}
           <li><a href="/profile">Profile</a></li>
           {/* <li><a href="/create">Create</a></li>
           <li><a href="/modify">Modify</a></li> */}
